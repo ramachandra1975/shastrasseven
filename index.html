@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Śāstra Knowledge Ecology | Module II — Vectors III–IV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+Devanagari:wght@400;500;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --gold:#c9a86a;--gold-b:#e8cb8a;--crimson:#7a1f2b;--crimson-b:#9c2c3a;
+  --bg:#0b0906;--panel:#16110e;--panel2:#1d1713;--border:#3a2e22;
+  --text:#e8ddc8;--dim:#a89884;--faint:#7a6c5a;--cream:#f3ead6;
+  --saffron:#d9883f;--jade:#2e6b4f;--jade-b:#4a9e77;
+  --v3:#8a4a2b;--v3b:#f0a070;--v4:#2b5a2b;--v4b:#6fcf6f;
+  --v1:#7a4fa0;--v1b:#c084fc;--v2:#1e5f74;--v2b:#67c7d8;
+  --v5:#5a3a1a;--v5b:#d4a060;--v6:#4a2b6b;--v6b:#b07ae8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:"EB Garamond",serif;font-size:17px;line-height:1.85}
+.dn{font-family:"Noto Serif Devanagari",serif}
+h1,h2,h3,h4,.cinzel{font-family:"Cinzel",serif;letter-spacing:.03em}
+.iast{font-family:"Cormorant Garamond";font-style:italic;color:var(--gold)}
+.sidenav{position:fixed;left:0;top:0;height:100vh;width:270px;background:#0e0905;
+  border-right:1px solid var(--border);overflow-y:auto;padding:20px 0 40px;z-index:50}
+.sidenav::-webkit-scrollbar{width:4px}
+.sidenav::-webkit-scrollbar-thumb{background:var(--border)}
+.sn-brand{padding:0 18px 16px;border-bottom:1px solid var(--border);margin-bottom:12px}
+.sn-brand .om{font-size:22px;color:var(--gold-b);display:block;margin-bottom:4px}
+.sn-brand h2{font-family:"Cinzel";font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream)}
+.sn-brand p{font-size:11px;color:var(--faint);margin-top:3px}
+.sn-group-label{font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--faint);padding:8px 18px 3px}
+.sn-link{display:block;padding:5px 18px;font-size:12px;color:var(--dim);text-decoration:none;
+  border-left:2px solid transparent;transition:all .15s;line-height:1.4}
+.sn-link:hover{color:var(--gold-b)}
+.sn-link.active{color:var(--gold-b);border-left-color:var(--crimson-b);background:rgba(122,31,43,0.1)}
+.module-pills{display:flex;flex-wrap:wrap;gap:5px;padding:10px 18px}
+.mod-pill{font-size:10px;font-family:"Cinzel";padding:3px 9px;border-radius:3px;border:1px solid var(--border);
+  color:var(--faint);text-decoration:none;transition:all .15s}
+.mod-pill:hover{border-color:var(--gold);color:var(--gold)}
+.mod-pill.current{border-color:var(--crimson-b);color:var(--crimson-b)}
+.main-wrap{margin-left:270px}
+.content{max-width:900px;padding:60px 52px 80px}
+.cover{min-height:60vh;display:flex;flex-direction:column;justify-content:center;padding:60px 0 40px;border-bottom:1px solid var(--border)}
+.cover .module-badge{font-family:"Cinzel";font-size:11px;letter-spacing:.2em;border:1px solid var(--crimson-b);color:var(--crimson-b);padding:6px 18px;border-radius:3px;display:inline-block;margin-bottom:20px}
+.cover .dn-title{font-family:"Noto Serif Devanagari";font-size:30px;color:var(--gold-b);line-height:1.4;margin-bottom:12px}
+.cover h1{font-family:"Cinzel";font-size:26px;color:var(--cream);line-height:1.3;margin-bottom:10px}
+.cover .subtitle{font-family:"Cormorant Garamond";font-size:19px;font-style:italic;color:var(--dim);margin-bottom:20px}
+.chapter-head{margin:60px 0 28px}
+.chapter-head .ch-number{font-family:"Source Code Pro",monospace;font-size:10px;letter-spacing:.14em;color:var(--faint);border:1px solid var(--border);padding:3px 8px;border-radius:2px;display:inline-block;margin-bottom:10px}
+.chapter-head h2{font-size:23px;color:var(--cream);line-height:1.25;margin-bottom:8px}
+.chapter-head .ch-dn{font-family:"Noto Serif Devanagari";font-size:17px;color:var(--gold-b);display:block;margin-bottom:8px}
+.chapter-head .ch-sub{font-family:"Cormorant Garamond";font-style:italic;font-size:17px;color:var(--dim)}
+.section-label{font-family:"Cinzel";font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--saffron);margin:38px 0 14px;display:flex;align-items:center;gap:10px}
+.section-label::before{content:"";width:24px;height:1px;background:var(--saffron);flex-shrink:0}
+h3.sub{font-family:"Cinzel";font-size:15px;color:var(--gold-b);margin:26px 0 11px}
+h4.subsub{font-family:"Cinzel";font-size:13px;color:var(--saffron);margin:20px 0 9px;letter-spacing:.06em}
+p{margin-bottom:16px}p:last-child{margin-bottom:0}
+.abstract{font-family:"Cormorant Garamond";font-size:18px;color:var(--dim);font-style:italic;line-height:1.75;margin-bottom:18px;padding-left:20px;border-left:3px solid var(--crimson)}
+.vector-box{border:1px solid;border-radius:6px;padding:24px 28px;margin:28px 0}
+.vector-box .vb-head{font-family:"Cinzel";font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}
+.vector-box h3{font-family:"Cinzel";font-size:17px;margin-bottom:12px;line-height:1.3}
+.vector-box p{font-size:15.5px;color:var(--dim);line-height:1.75}
+.vb3{border-color:var(--v3);background:rgba(138,74,43,0.05)}.vb3 .vb-head,.vb3 h3{color:var(--v3b)}
+.vb4{border-color:var(--v4);background:rgba(43,90,43,0.05)}.vb4 .vb-head,.vb4 h3{color:var(--v4b)}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:5px;padding:22px 26px;margin:20px 0}
+.panel h4{font-family:"Cinzel";font-size:13px;color:var(--gold-b);margin-bottom:10px}
+.panel p,.panel li{font-size:14.5px;color:var(--dim);line-height:1.7}
+.panel ul,.panel ol{padding-left:20px}
+.panel li{margin-bottom:7px}
+.panel.research{border-left:3px solid #4a6b8a}.panel.research h4{color:#6fa3cc}
+.panel.jade{border-left:3px solid var(--jade)}.panel.jade h4{color:var(--jade-b)}
+.panel.gold{border-left:3px solid var(--gold)}.panel.gold h4{color:var(--gold-b)}
+.panel.v3{border-left:3px solid var(--v3)}.panel.v3 h4{color:var(--v3b)}
+.panel.v4{border-left:3px solid var(--v4)}.panel.v4 h4{color:var(--v4b)}
+.skt{font-family:"Noto Serif Devanagari";font-size:20px;color:var(--cream);background:var(--panel2);border-left:3px solid var(--crimson-b);padding:14px 20px;margin:18px 0;border-radius:0 4px 4px 0;line-height:2}
+blockquote{border-left:3px solid var(--gold);padding:10px 20px;margin:18px 0;font-family:"Cormorant Garamond";font-style:italic;font-size:18px;color:var(--text);background:rgba(201,168,106,0.04)}
+blockquote cite{display:block;margin-top:6px;font-size:13px;color:var(--faint);font-style:normal}
+table.data{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}
+table.data thead tr{background:rgba(122,31,43,0.15)}
+table.data th{text-align:left;color:var(--gold-b);font-family:"Cinzel";font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;padding:9px 12px;border-bottom:2px solid var(--crimson)}
+table.data td{padding:8px 12px;border-bottom:1px solid rgba(58,46,34,0.45);color:var(--dim);vertical-align:top}
+table.data td.hi{color:var(--saffron);font-family:"Cinzel";font-size:12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+@media(max-width:700px){.grid2{grid-template-columns:1fr}}
+.page-break{border-top:1px solid var(--border);margin:50px 0 40px;position:relative}
+.page-break::after{content:attr(data-page);position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--bg);padding:0 14px;font-family:"Source Code Pro",monospace;font-size:10px;color:var(--faint)}
+.stats{display:flex;gap:14px;flex-wrap:wrap;margin:22px 0}
+.stat{flex:1;min-width:110px;background:var(--panel);border:1px solid var(--border);border-radius:5px;padding:14px 16px;text-align:center}
+.stat .sv{font-family:"Cinzel";font-size:24px;color:var(--gold-b);line-height:1}
+.stat .sl{font-size:11px;color:var(--faint);margin-top:5px;line-height:1.4}
+.callout{border:1px solid;border-radius:5px;padding:16px 22px;margin:20px 0}
+.callout .cl-head{font-family:"Cinzel";font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.callout.v3{border-color:var(--v3)}.callout.v3 .cl-head{color:var(--v3b)}
+.callout.v4{border-color:var(--v4)}.callout.v4 .cl-head{color:var(--v4b)}
+.callout p{font-size:14.5px;color:var(--dim);line-height:1.7}
+.footnotes{margin-top:50px;padding-top:20px;border-top:1px solid var(--border);font-size:13px;color:var(--faint)}
+.footnotes h4{font-family:"Cinzel";font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
+.fn{margin-bottom:6px;padding-left:22px;text-indent:-22px;line-height:1.55}
+.fn-num{color:var(--saffron);font-family:"Source Code Pro",monospace;font-size:10px;margin-right:5px}
+.fnav{display:flex;justify-content:space-between;align-items:center;margin-top:50px;padding-top:18px;border-top:1px solid var(--border)}
+.fnav a{color:var(--gold);text-decoration:none;font-family:"Cinzel";font-size:12px;letter-spacing:.05em}
+.fnav a:hover{color:var(--gold-b)}
+@media(max-width:900px){.sidenav{display:none}.main-wrap{margin-left:0}.content{padding:28px 18px 60px}}
+</style>
+</head>
+<body>
+<nav class="sidenav">
+  <div class="sn-brand">
+    <span class="om dn">ॐ</span>
+    <h2>Śāstra Knowledge Ecology</h2>
+    <p>The Seventh Angle · White Paper Series</p>
+  </div>
+  <div class="sn-group-label">Module II Contents</div>
+  <a class="sn-link active" href="#cover">Cover</a>
+  <a class="sn-link" href="#intro">Introduction to Vectors III–IV</a>
+  <a class="sn-link" href="#vector3">§9 · Vector III — Formal Graph</a>
+  <a class="sn-link" href="#graph-properties">§10 · Graph Properties</a>
+  <a class="sn-link" href="#graph-predictions">§11 · Predictions from Graph Theory</a>
+  <a class="sn-link" href="#temporal">§12 · Temporal Dynamics</a>
+  <a class="sn-link" href="#vector4">§13 · Vector IV — Tacit Ecology</a>
+  <a class="sn-link" href="#tacit-forms">§14 · Forms of Tacit Correction</a>
+  <a class="sn-link" href="#tacit-evidence">§15 · Evidence Base</a>
+  <a class="sn-link" href="#tacit-modern">§16 · Modern Implications</a>
+  <a class="sn-link" href="#integration">§17 · Integrating III &amp; IV</a>
+  <a class="sn-link" href="#references">References</a>
+  <div class="sn-group-label">All Modules</div>
+  <div class="module-pills">
+    <a class="mod-pill" href="module-1.html">I</a>
+    <a class="mod-pill current" href="module-2.html">II</a>
+    <a class="mod-pill" href="module-3.html">III</a>
+    <a class="mod-pill" href="module-4.html">IV</a>
+    <a class="mod-pill" href="module-5.html">V</a>
+  </div>
+</nav>
+
+<div class="main-wrap">
+<div class="content">
+
+<div class="cover" id="cover">
+  <span class="module-badge">Module II of V</span>
+  <div class="dn-title">शास्त्रसम्बन्धस्य रूपचित्रणम् — अव्यक्तज्ञानपारिस्थितिकी च</div>
+  <h1>Formal Network Modelling &amp; The Tacit Knowledge Ecology</h1>
+  <p class="subtitle">Research Vectors III and IV of the Seventh Angle Framework</p>
+  <p style="font-family:'Cinzel';font-size:11px;letter-spacing:.14em;color:var(--gold)">Vector III — Śāstric Relations as Directed Graph · Vector IV — Uncodified Correction Mechanisms</p>
+</div>
+
+<!-- INTRO -->
+<div class="chapter-head" id="intro">
+  <span class="ch-number">INTRODUCTION</span>
+  <h2>From Description to Formal Model</h2>
+  <span class="ch-dn">वर्णनात् औपचारिकरूपचित्रणपर्यन्तम्</span>
+  <p class="ch-sub">Why Vectors III and IV require different methodological registers</p>
+</div>
+
+<p class="abstract">Module I described the knowledge ecology concept and introduced two research vectors — Vector I (cross-citation error signal mapping) and Vector II (the bādhā cascade theory). Both vectors are, in a precise sense, visible: the cross-citations can in principle be found in texts; the bādhā cascades can be traced through the historical record. This module introduces two further vectors that operate at different levels of abstraction. Vector III takes the empirical data that Vector I would generate and subjects it to formal graph-theoretic analysis, producing predictions about the śāstric network's structural properties that can then be tested against the textual evidence. Vector IV does the opposite: it descends below the textual record to examine the uncodified, tacit correction mechanisms that operated in the living practice of the śāstric tradition but left only indirect traces in the texts.</p>
+
+<p>Together, Vectors III and IV form a methodological pair: III moves from data to formal model (bottom-up); IV moves from theoretical necessity to indirect evidence (top-down). Their convergence — if both yield the same structural picture of the śāstric knowledge ecology — would constitute the strongest possible evidence for the seventh-angle framework's validity.</p>
+
+<div class="page-break" data-page="p. 3"></div>
+
+<!-- VECTOR III -->
+<div class="chapter-head" id="vector3">
+  <span class="ch-number">§9 · Vector III</span>
+  <h2>Śāstric Relations as a Formal Directed Graph</h2>
+  <span class="ch-dn">शास्त्रसम्बन्धानाम् औपचारिकं रेखाचित्रम्</span>
+  <p class="ch-sub">Applying graph theory and network science to the inter-śāstric correction network</p>
+</div>
+
+<div class="vector-box vb3">
+  <div class="vb-head">Research Vector III</div>
+  <h3>The Śāstric Correction Network as a Formal Mathematical Object</h3>
+  <p>Vector III proposes that the cross-citation data generated by Vector I's research programme (the directed error-signal graph G = (V, E, w, d)) be subjected to the full arsenal of graph-theoretic and network-science analysis. This is not merely an analytical exercise: graph theory generates testable predictions about network structure. If the śāstric network has specific graph-theoretic properties (scale-free degree distribution, small-world clustering, specific centrality profiles), these properties can be predicted from the knowledge ecology hypothesis and then verified or falsified against the empirical citation data. The knowledge ecology hypothesis thus becomes a formally falsifiable scientific claim — a standard to which no prior treatment of the śāstric tradition has been held.</p>
+</div>
+
+<h3 class="sub">Predicted Graph-Theoretic Properties</h3>
+
+<p>The knowledge ecology hypothesis, combined with what we know from systems ecology about robust complex networks, generates the following specific predictions about the structure of the śāstric correction network:</p>
+
+<h4 class="subsub">Prediction 1 — Scale-Free Degree Distribution</h4>
+<p>In a scale-free network (Barabási and Albert 1999), the degree distribution follows a power law: P(k) ~ k⁻ᵞ, where k is the number of connections and γ is the scaling exponent (typically between 2 and 3). Scale-free networks arise through preferential attachment: new nodes preferentially connect to already highly-connected nodes. In the śāstric context, this predicts that newly composed texts cited the most authoritative existing texts (Pāṇini's Aṣṭādhyāyī, Patañjali's Mahābhāṣya, Jaimini's Mīmāṃsāsūtra) far more frequently than less authoritative texts — producing a few highly connected hubs and many poorly connected peripheral texts. This is what we would expect from the tradition's known authority structure. If the citation network is NOT scale-free, the authority-based preferential attachment model must be replaced — suggesting citations were distributed more democratically than the tradition's own hierarchy implies.</p>
+
+<h4 class="subsub">Prediction 2 — Small-World Property</h4>
+<p>Small-world networks (Watts and Strogatz 1998) combine high local clustering (each node's neighbours are likely to be connected to each other) with short average path lengths (any two nodes can be connected by a short chain of edges). In the śāstric context, this predicts that any two śāstric texts are connected by a short citation chain — and that texts within the same disciplinary cluster are densely cross-connected. If this prediction is confirmed, it means the śāstric tradition maintained efficient information flow across the entire network despite being geographically dispersed and chronologically extended. An erroneously made claim could in principle reach every part of the network within a small number of citation steps — which is exactly the property needed for effective error correction.</p>
+
+<h4 class="subsub">Prediction 3 — Structural Holes Between Disciplinary Clusters</h4>
+<p>The modularity property of the knowledge ecology hypothesis predicts that the citation network will show distinct disciplinary clusters with relatively sparse connections between clusters and dense connections within clusters. Graph theory formalizes this as the concept of "structural holes" (Burt 1992): positions in a network where a node bridges two otherwise disconnected clusters. In the śāstric context, the prediction is that a small number of multi-disciplinary scholars or texts (Abhinavagupta, Kumārila Bhaṭṭa, Udayana, Vātsyāyana) occupied structural hole positions — bridging the logical-epistemological cluster, the metaphysical cluster, and the empirical cluster. These structural hole occupants were, in effect, the inter-disciplinary error-correction relays of the entire system.</p>
+
+<table class="data">
+  <thead>
+    <tr><th>Predicted Property</th><th>Graph-Theoretic Test</th><th>Knowledge Ecology Implication</th><th>Falsification Condition</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="hi">Scale-free degree distribution</td><td>Fit power law P(k)~k⁻ᵞ to citation degree distribution</td><td>Authority-based preferential attachment; small number of hub texts</td><td>Poisson or uniform distribution would falsify</td></tr>
+    <tr><td class="hi">Small-world property</td><td>Measure clustering coefficient C and average path length L; compare to random graph</td><td>Efficient cross-network error signal propagation</td><td>C no higher than random graph would falsify</td></tr>
+    <tr><td class="hi">Structural holes between clusters</td><td>Betweenness centrality identifies bridge nodes; modularity score identifies clusters</td><td>Multi-disciplinary scholars as correction relays</td><td>No betweenness centrality peaks would falsify</td></tr>
+    <tr><td class="hi">Error signal directionality</td><td>In-degree vs. out-degree of E⁻ subgraph; identify net correctors vs. net correctees</td><td>Certain śāstras systematically function as error-detectors vs. error-targets</td><td>Symmetric in/out degree for all nodes would falsify</td></tr>
+    <tr><td class="hi">Temporal stability of hubs</td><td>Compare hub nodes across 200-year temporal slices</td><td>Core disciplinary authorities stable; periphery varies</td><td>Hub nodes changing every period would falsify</td></tr>
+  </tbody>
+</table>
+
+<div class="page-break" data-page="p. 8"></div>
+
+<!-- GRAPH PROPERTIES -->
+<div class="chapter-head" id="graph-properties">
+  <span class="ch-number">§10</span>
+  <h2>Graph-Theoretic Properties in Detail</h2>
+  <span class="ch-dn">रेखाचित्रस्य गाणितिकधर्माः</span>
+  <p class="ch-sub">What each predicted graph property means for the knowledge ecology hypothesis</p>
+</div>
+
+<h3 class="sub">Centrality Analysis: Who Was the System's Error-Correction Engine?</h3>
+
+<p>Four centrality measures, each capturing a different aspect of a node's structural importance in the citation network, yield different research questions when applied to the śāstric corpus:</p>
+
+<div class="grid2">
+<div class="panel v3">
+  <h4>Degree Centrality</h4>
+  <p>Raw count of citation relationships. High out-degree in the error-signal subgraph G⁻ identifies texts that <em>corrected many others</em>. High in-degree in G⁻ identifies texts that <em>were most often corrected</em>. Predicted highest out-degree: Kumārila's Ślokavārttika, Udayana's Nyāyakusumāñjali, Śaṅkara's Brahmasūtrabhāṣya. Predicted highest in-degree: early Sāṃkhya texts (maximum attack surface from all other schools), Vaiśeṣika's atomic theory.</p>
+</div>
+<div class="panel v4">
+  <h4>Betweenness Centrality</h4>
+  <p>Proportion of shortest paths between all pairs of nodes that pass through a given node. Identifies the <em>relay scholars</em> — those whose works carried correction signals between otherwise disconnected disciplinary clusters. Predicted maximum betweenness: Abhinavagupta (aesthetics-Kashmir Śaivism-Vedānta bridge), Vācaspati Miśra (his commentaries span Nyāya, Sāṃkhya, Advaita, Mīmāṃsā simultaneously), and the Navya-Nyāya texts of the 13th–16th centuries (bridge between Buddhist logic and Brahmanical epistemology).</p>
+</div>
+<div class="panel gold">
+  <h4>Eigenvector Centrality (Prestige)</h4>
+  <p>A node's centrality as weighted by the centrality of its neighbours — being cited by highly-cited texts is worth more than being cited by poorly-cited texts. This is the "academic prestige" measure. Predicted maximum prestige: the Aṣṭādhyāyī (cited by extremely high-prestige texts across all disciplines), the Mīmāṃsāsūtra (cited by every Dharmaśāstra digester, every Vedāntic commentator, and every competing school). The prestige ranking would constitute an empirically derived authority hierarchy — testable against the tradition's own nominal authority hierarchy.</p>
+</div>
+<div class="panel jade">
+  <h4>PageRank (Iterative Prestige)</h4>
+  <p>Google's PageRank algorithm, when applied to the citation graph, would identify texts whose influence propagated recursively through many subsequent generations of citation. Predicted maximum PageRank: Patañjali's Mahābhāṣya (cited by Kāśikāvṛtti, cited by Nyāsa, cited by Padamañjarī, etc. — a citation chain propagating through 1,500 years and reaching texts in disciplines Patañjali never addressed). The depth of a text's PageRank reach would measure its cross-disciplinary influence across time.</p>
+</div>
+</div>
+
+<h3 class="sub">Community Detection: What Clusters Emerge?</h3>
+
+<p>Community detection algorithms (Louvain method, Girvan-Newman) applied to the śāstric citation network would identify which texts cluster together through dense mutual citation — without the researcher pre-imposing disciplinary categories. The hypothesis predicts that the algorithmically identified communities will largely match the tradition's own disciplinary self-identification, but with two types of expected divergence:</p>
+
+<p><strong>Divergence Type A — Unexpected Cross-Disciplinary Clusters:</strong> Certain texts may cluster together despite belonging to nominally different disciplines, because their correction relationships are denser than their relationships within their own disciplines. Hypothesized example: Dignāga's Pramāṇasamuccaya may cluster with Udayana's Nyāyakusumāñjali and Kumārila's Ślokavārttika (all three in tight mutual correction relationships) despite belonging to Buddhist, Nyāya, and Mīmāṃsā traditions respectively.</p>
+
+<p><strong>Divergence Type B — Unexpected Intra-Disciplinary Isolation:</strong> Certain texts within the same nominal discipline may show weaker citation connections to each other than to texts in other disciplines. Hypothesized example: the Kāmaśāstra tradition (Vātsyāyana, Kokkoka, Jayamaṅgalā) may show extremely weak citation connections to the Dharmaśāstra tradition despite their shared concern with social regulation — a structural hole that, if confirmed, would support the hypothesis that Kāmaśāstra operated more as a cultural-aesthetic discipline than as a juridical one.</p>
+
+<div class="page-break" data-page="p. 13"></div>
+
+<!-- GRAPH PREDICTIONS -->
+<div class="chapter-head" id="graph-predictions">
+  <span class="ch-number">§11</span>
+  <h2>Novel Predictions from the Graph Model</h2>
+  <span class="ch-dn">रेखाचित्रमाध्यमेन नूतनाः पूर्वज्ञापनाः</span>
+  <p class="ch-sub">Six predictions that existing scholarship has not made and the graph model specifically generates</p>
+</div>
+
+<p>The value of a formal model is that it generates predictions that intuition alone would not produce. The following six predictions are specifically generated by the knowledge ecology graph model — they are not derivable from any existing approach to the śāstric tradition, and each is in principle testable:</p>
+
+<h4 class="subsub">Graph Prediction 1 — The Dharmakīrti Bottleneck</h4>
+<p>Dharmakīrti (c. 600–660 CE) is predicted to be the single highest-betweenness node in the 400–900 CE temporal slice of the error-signal graph. His Pramāṇavārttika launched corrections that propagated simultaneously into Buddhist epistemology (self-correction of earlier Buddhist positions), Nyāya (forcing the Udyotakara-Vācaspati response), Mīmāṃsā (forcing Kumārila's sustained engagement), and eventually Vedānta (Dharmakīrti's critique of ātman-based cognition forcing the Navya-Vedāntic responses of the 9th–10th centuries). No text in a 500-year window should show comparable betweenness centrality. If this prediction is falsified — if, say, Vasubandhu (c. 320–400 CE) or Dignāga shows higher betweenness — the chronological model of the cascade sequence needs revision.</p>
+
+<h4 class="subsub">Graph Prediction 2 — The Arthaśāstra's Structural Isolation</h4>
+<p>The Arthaśāstra, despite being one of the most sophisticated texts in the śāstric corpus, is predicted to show anomalously low betweenness centrality — specifically, to be cited by few texts in other disciplines and to cite few texts in other disciplines using correction-type citations. If the Arthaśāstra was indeed lost for ~1,500 years (as Shamasastry's 1909 discovery implies), this isolation would be structurally encoded in the citation network: the Arthaśāstra would appear as an isolated node or small cluster disconnected from the main correction network for the medieval period. Testing this prediction would provide independent evidence for the Arthaśāstra's period of loss — more rigorous than the current historiographical arguments based on absence of reference in known texts.</p>
+
+<h4 class="subsub">Graph Prediction 3 — The Navya-Nyāya Bridge</h4>
+<p>The Navya-Nyāya technical vocabulary (developed by Gaṅgeśa, c. 1325 CE, and elaborated by the Mithilā and Navadvīpa schools through the 17th century) is predicted to show the highest rate of cross-disciplinary adoption of any single technical innovation in the śāstric tradition. If Navya-Nyāya was adopted by Vedānta, Mīmāṃsā, Vyākaraṇa, and Dharmaśāstra commentators simultaneously (as the historical record suggests), the citation graph would show a dramatic increase in edges originating from or converging at Navya-Nyāya texts across all disciplinary clusters — the graph-theoretic signature of a correction protocol that became the system's universal formal language.</p>
+
+<h4 class="subsub">Graph Prediction 4 — The Buddhist Severance Point</h4>
+<p>The citation network is predicted to show a sharp decrease in edges between Buddhist and Brahmanical clusters after approximately 1200 CE — corresponding to the destruction of the major Buddhist intellectual centres (Nālandā, Vikramaśīla) by the Ghurid invasions (1193–1203 CE). Before this point, the Buddhist-Brahmanical correction relationship should show dense bidirectional edges; after it, the Brahmanical cluster should show a pattern consistent with correcting ghost positions — responding to Buddhist arguments that are no longer being generated by living Buddhist scholars, gradually losing touch with the most sophisticated forms of the Buddhist critique. This "fossil correction" pattern, if detectable in the citation data, would constitute the graph-theoretic signature of intellectual genocide.</p>
+
+<h4 class="subsub">Graph Prediction 5 — Regional Sub-Networks</h4>
+<p>Regional geographic clusters should emerge from the citation data corresponding to the major intellectual centres: Kashmir (Kashmir Śaivism, Pratyabhijñā school), Mithilā (Navya-Nyāya), Navadvīpa (Late Navya-Nyāya and Smārta Dharmaśāstra), Varanasi (Vyākaraṇa, Mīmāṃsā), Śṛṅgeri/South India (Advaita Vedānta, Śilpaśāstra, Gāndharvaveda). Regional sub-networks should show higher internal clustering than inter-regional connections — the graph-theoretic signature of the geographical conditions that shaped the tradition's institutional distribution.</p>
+
+<h4 class="subsub">Graph Prediction 6 — The Collapse Signature</h4>
+<p>The colonial period (1757–1947 CE) is predicted to produce a detectably different graph structure from any previous period: a dramatic decline in the density of inter-disciplinary edges (as scholars became specialists in single texts rather than multiple disciplines), a shift from error-signal (disagreeing) citations to reverential (agreeing) citations (as the tradition shifted from generating new knowledge to preserving existing knowledge), and an increase in isolate nodes (texts cited by no subsequent texts). This "collapse signature" would be the graph-theoretic correlate of the institutional rupture identified in the existing six-angle synthesis.</p>
+
+<div class="callout v3">
+  <div class="cl-head">Critical Research Pointer — Graph Prediction 4 and Intellectual Loss</div>
+  <p>If the "Buddhist severance point" prediction is confirmed, the citation graph would constitute quantitative evidence for the intellectual-historical consequences of the Nālandā destruction that current historiography can only describe qualitatively. A measurable drop in cross-cluster correction relationships after 1200 CE would be the most rigorous evidence yet obtained for the claim that the Ghurid invasions did lasting, irreversible damage to the self-correcting capacity of the Indian knowledge ecology — damage from which it did not fully recover before the colonial period imposed a second and differently-structured disruption.</p>
+</div>
+
+<div class="page-break" data-page="p. 19"></div>
+
+<!-- TEMPORAL DYNAMICS -->
+<div class="chapter-head" id="temporal">
+  <span class="ch-number">§12</span>
+  <h2>Temporal Dynamics of the Knowledge Ecology</h2>
+  <span class="ch-dn">ज्ञानपारिस्थितिक्याः कालिकगतिशीलता</span>
+  <p class="ch-sub">How the inter-śāstric correction network evolved across five historical periods</p>
+</div>
+
+<p>Network analysis of the citation graph should be performed in temporal slices to capture the evolution of the knowledge ecology over time. Five periods are proposed, corresponding to the five phases of śāstric history identified in the existing synthesis study:</p>
+
+<table class="data">
+  <thead>
+    <tr><th>Period</th><th>Date Range</th><th>Predicted Network Characteristics</th><th>Key Graph Events</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="hi">Formation</td><td>600 BCE – 200 CE</td><td>Sparse, expanding network; long path lengths; few hubs; disciplinary clusters forming but not yet densely connected</td><td>Aṣṭādhyāyī emerges as first major hub; Mīmāṃsāsūtra creates second hub; Buddhist texts begin entering network as high-betweenness correction nodes</td></tr>
+    <tr><td class="hi">Classical flowering</td><td>200 CE – 650 CE</td><td>Rapid densification; small-world property emerges; scale-free distribution solidifying; Buddhist-Brahmanical correction loop becomes dominant feature</td><td>Vasubandhu, Dignāga, Buddhapālita create dense Buddhist correction cluster; Brahmanical schools generate compensatory responses increasing edge density on their side</td></tr>
+    <tr><td class="hi">Synthesis plateau</td><td>650 CE – 1200 CE</td><td>Network reaches maximum density; highest betweenness centrality scores (Dharmakīrti, Kumārila, Abhinavagupta, Udayana); structural holes being filled by multi-disciplinary scholars</td><td>Navya-Nyāya begins; Vedāntic schools multiply and differentiate; regional sub-networks becoming identifiable</td></tr>
+    <tr><td class="hi">Medieval contraction</td><td>1200 CE – 1750 CE</td><td>Buddhist cluster disappears; remaining network reorganises around Vedāntic synthesis; Navya-Nyāya becomes universal correction protocol; new empirical inputs from Islamic intellectual traditions partially absorbed</td><td>Buddhist severance point visible as edge loss; Navya-Nyāya adoption creates dense new cross-disciplinary bridging layer</td></tr>
+    <tr><td class="hi">Colonial disruption</td><td>1750 CE – 1950 CE</td><td>Collapse signature: decline in inter-disciplinary edges, shift from disagreeing to reverential citations, increase in isolate nodes; Western comparative scholarship begins entering network as anomalous external cluster</td><td>Print culture homogenizes regional variants; colonial legal codification severs Dharmaśāstra from living practice; Orientalist scholarship creates new citation nodes outside the tradition's own authority structure</td></tr>
+  </tbody>
+</table>
+
+<h3 class="sub">The Evolution of Hub Identity Across Periods</h3>
+
+<p>A specific prediction from the temporal analysis: the disciplinary identity of the network's highest-centrality nodes shifts across periods in a predictable direction — from formal sciences (grammar, logic) in the early period toward synthetic commentators in the classical period toward digesting encyclopaedists in the medieval period. This directional shift reflects the changing function of the knowledge ecology: from generating new disciplinary frameworks (requiring formal rigor) to integrating existing frameworks (requiring breadth) to conserving existing knowledge (requiring completeness).</p>
+
+<p>The three functions — generation, integration, conservation — correspond to different network structures and different types of highest-centrality nodes. A formal test of whether the predicted shift in hub identity across temporal periods corresponds to the predicted shift in network function would constitute the most comprehensive temporal validation of the knowledge ecology hypothesis yet attempted.</p>
+
+<div class="page-break" data-page="p. 24"></div>
+
+<!-- VECTOR IV -->
+<div class="chapter-head" id="vector4">
+  <span class="ch-number">§13 · Vector IV</span>
+  <h2>The Tacit Knowledge Ecology</h2>
+  <span class="ch-dn">अव्यक्तज्ञानपारिस्थितिकी</span>
+  <p class="ch-sub">Error correction mechanisms that operated below the level of explicit textual citation</p>
+</div>
+
+<div class="vector-box vb4">
+  <div class="vb-head">Research Vector IV</div>
+  <h3>The Unwritten Correction System: Tacit Inter-Disciplinary Error Management</h3>
+  <p>Vectors I, II, and III all focus on error correction mechanisms that left textual traces — citations, refutations, formal arguments, commentarial debates. Vector IV proposes that a substantial portion of the śāstric tradition's error-correction activity was tacit: operating through institutional practices, pedagogical structures, craft transmission, and performance conventions rather than through explicit textual argument. This tacit correction system was at least as important as the textual one — and may have been more important for maintaining the quality of knowledge in the practical disciplines (Āyurveda, Śilpaśāstra, Gāndharvaveda, Kāmaśāstra) where the primary knowledge medium was embodied skill rather than propositional text. No scholarship on the śāstric tradition has examined tacit error correction as a formal research object.</p>
+</div>
+
+<h3 class="sub">What "Tacit" Means in this Context</h3>
+
+<p>Michael Polanyi's concept of tacit knowledge — "we know more than we can tell" — is useful here but insufficient. The śāstric tradition had a more sophisticated understanding of the tacit dimension than Polanyi's formulation captures. Vātsyāyana's <span class="iast">deśa-kāla-pātra</span> (place-time-person) principle — the non-codifiable residue of all codified rules — explicitly acknowledges that the text cannot replace the trained practitioner's judgment. But the śāstric tradition did not simply accept this residue as a limitation. It developed specific institutional structures for transmitting tacit knowledge and — crucially — for correcting tacit errors, i.e., errors in the untextualizable dimension of knowledge.</p>
+
+<p>Three institutional mechanisms for tacit error correction can be identified:</p>
+
+<div class="page-break" data-page="p. 27"></div>
+
+<!-- TACIT FORMS -->
+<div class="chapter-head" id="tacit-forms">
+  <span class="ch-number">§14</span>
+  <h2>Forms of Tacit Correction in the Śāstric Tradition</h2>
+  <span class="ch-dn">शास्त्रीयपरम्परायाम् अव्यक्तसंशोधनस्य रूपाणि</span>
+</div>
+
+<h3 class="sub">Tacit Mechanism 1 — The Gurukula as Error-Correction Environment</h3>
+
+<p>The <span class="iast">gurukula</span> (residential discipleship) structure was not merely a knowledge-transmission mechanism — it was a continuously operating error-correction system for tacit knowledge. The student's errors in recitation, ritual performance, grammar, or medical diagnosis were corrected in real time by the teacher, without the correction being textually recorded. The same student, once having absorbed the teacher's correction, transmitted the corrected practice to the next generation. Over multiple generations, systematic tacit errors were progressively eliminated from the living practice — even as the foundational texts remained unchanged.</p>
+
+<p>This process has an important structural property: it operated faster than the textual correction system. A textual error in the Aṣṭādhyāyī required a commentarial response (Vārttika, Bhāṣya) before it could be corrected — a process taking decades or centuries. A tacit error in a student's recitation was corrected in the same session. The gurukula system was therefore a high-bandwidth, low-latency error-correction channel supplementing the low-bandwidth, high-latency textual channel.</p>
+
+<h3 class="sub">Tacit Mechanism 2 — The Śāstrārtha as Tacit Knowledge Auditor</h3>
+
+<p>The śāstrārtha (formal public debate) was one of the most important institutional mechanisms in the śāstric tradition, and its function as a tacit error-correction mechanism has been almost entirely overlooked in scholarship that focuses on its explicit logical content. When a pandit debated publicly, the audience — which included scholars trained in multiple disciplines — exercised a form of tacit judgment that went beyond the formal assessment of logical validity. They assessed whether the debater's practice of the discipline matched its standards: whether the debater's Sanskrit was appropriate for the level of argument being made, whether the debater's body language (hand gestures, eye contact, speaking pace) reflected the confidence appropriate to the claim, whether the debater's choice of examples revealed genuine mastery or superficial familiarity with the practice-domain of the discipline.</p>
+
+<p>This multi-dimensional tacit assessment constituted a form of inter-disciplinary quality control that the textual tradition alone could not have provided. A grammarian who won a debate on purely logical grounds but whose Sanskrit was stylistically inappropriate would be privately criticized in ways that never entered any text — but that shaped his reputation, his institutional position, and the transmission of his work.</p>
+
+<h3 class="sub">Tacit Mechanism 3 — The Performance Tradition as Empirical Test</h3>
+
+<p>For the aesthetic and practical disciplines — Nāṭyaśāstra, Gāndharvaveda, Śilpaśāstra, Āyurveda — performance and application constituted the ultimate empirical test of the textual prescription. A Bharatanāṭyam sequence performed according to the Nāṭyaśāstra's karaṇa specifications but producing no aesthetic response in a qualified audience was an error signal: something in the textual specification, or in its application, was wrong. The audience's aesthetic response (or absence of it) was a tacit correction signal that fed back into the performance tradition — modifying, over generations, the way the text was interpreted and applied.</p>
+
+<p>This feedback loop between textual prescription and performance practice is the tacit knowledge ecology's most important feature: it connected the śāstras to empirical reality through channels that were institutionally structured (the performance tradition) but not textually mediated. The correction happened in the body, in the practice space, in the audience's trained response — not in any commentary.</p>
+
+<div class="callout v4">
+  <div class="cl-head">Research Pointer — The Mrdaṅga Correction</div>
+  <p>The textual prescription for mṛdaṅga (drum) tuning in the Saṃgītaratnākara specifies frequency ratios that would, if followed literally, produce intonation inconsistent with the performance tradition's actual practice. Practicing mṛdaṅgists do not follow the text literally — they use a calibration procedure (applying black tuning paste to the drum head) that produces a different set of frequency relationships. This discrepancy has never been formally documented. It constitutes a case of tacit correction overriding textual prescription — exactly the pattern Vector IV predicts, and a pattern that has been invisible to scholarship that reads texts but does not attend performance practice.</p>
+</div>
+
+<div class="page-break" data-page="p. 32"></div>
+
+<!-- TACIT EVIDENCE -->
+<div class="chapter-head" id="tacit-evidence">
+  <span class="ch-number">§15</span>
+  <h2>Evidence Base for Vector IV</h2>
+  <span class="ch-dn">चतुर्थसंशोधनवेक्टरस्य प्रमाणाधारः</span>
+  <p class="ch-sub">What indirect evidence exists in the textual record for the tacit correction system</p>
+</div>
+
+<p>The tacit correction system, by definition, does not leave direct textual traces. But it leaves indirect traces — places where the textual record acknowledges its own insufficiency, where commentators note that the text's prescription must be modified in practice, where performers report doing something different from what the text says, and where the gap between textual prescription and actual practice is historically documented. Five categories of indirect evidence are available:</p>
+
+<h4 class="subsub">Category 1 — Explicit Acknowledgments of Textual Insufficiency</h4>
+<p>Several key śāstric texts explicitly acknowledge that their prescriptions cannot capture the full knowledge required for correct practice. Caraka's deśa-kāla-pātra principle (Kāmaśāstra); Patañjali's frequent statement "<span class="iast">tatraiṣo'rtho vākyena nopādiśyate</span>" (this meaning cannot be taught through sentences — Mahābhāṣya); the Nāṭyaśāstra's statement that the teacher's demonstration (<span class="iast">ācarya-darśana</span>) is necessary to understand the karaṇa specifications. Each of these acknowledgments is an explicit marker of the boundary between the textual and tacit error-correction systems.</p>
+
+<h4 class="subsub">Category 2 — Commentarial Disagreements About Performance</h4>
+<p>When two commentators on the same text disagree about how a prescription should be performed in practice — rather than about its textual meaning — the disagreement is evidence that the tacit correction system was operating differently in their respective locations or traditions. The Nāṭyaśāstra's karaṇa descriptions generate precisely this kind of disagreement: the Tamil āsāri community and the Orissan Gotipua tradition interpret the same karaṇa specifications through different tacit performance templates. The commentarial disagreement is the textual trace left by a real divergence in the tacit correction systems of two geographically separated traditions.</p>
+
+<h4 class="subsub">Category 3 — Prescriptive Modification in Practice Manuals</h4>
+<p>Later practice manuals in the medical, architectural, and musical traditions frequently modify the prescriptions of the founding śāstric texts in ways that are explicitly practical. The Suśrutasaṃhitā's surgical instrument specifications are modified in later practice manuals with notes that the original specification was "not always feasible" (the phrase <span class="iast">vyavahāre tu</span> — "in practice, however" — is a marker of this tacit correction type). These modifications are the textual traces of tacit error correction having identified problems in the original specification that were only visible through actual practice.</p>
+
+<h4 class="subsub">Category 4 — Ethnographic Evidence from Living Traditions</h4>
+<p>Where living śāstric performance traditions survive — the Kūṭiyāṭṭam theatre tradition in Kerala, the āsāri temple-building communities of Tamil Nadu, the Āyurvedic vaidya lineages of Kerala and Karnataka — ethnographic research can document in real time the operation of the tacit correction system. What do practitioners say when they encounter a conflict between the text's prescription and their trained intuition? How do they adjudicate? How is the adjudication transmitted to the next generation? This ethnographic documentation is urgently needed and diminishing in possibility as these traditions' institutional fragility increases.</p>
+
+<h4 class="subsub">Category 5 — Archaeological and Architectural Evidence</h4>
+<p>For the Śilpaśāstra tradition, the built structures themselves constitute physical evidence of the tacit correction system. Where a structure deviates from the textual prescription in a way that can be measured (proportional ratios, material specifications, acoustic properties), the deviation is evidence of a tacit correction: the master builder adjusted the textual specification based on material conditions, site-specific constraints, or performance feedback (acoustic, structural, aesthetic) that the text did not anticipate. A systematic survey of proportional deviations from Śilpaśāstric norms across a representative sample of classical Indian temples would constitute the first quantitative study of tacit error correction in the sacred architecture tradition.</p>
+
+<div class="page-break" data-page="p. 37"></div>
+
+<!-- TACIT MODERN -->
+<div class="chapter-head" id="tacit-modern">
+  <span class="ch-number">§16</span>
+  <h2>The Tacit Ecology and Modern Knowledge Management</h2>
+  <span class="ch-dn">अधुनातनज्ञाननिर्वाहे अव्यक्तपारिस्थितिकी</span>
+  <p class="ch-sub">What contemporary organizations can learn from the śāstric tacit correction system</p>
+</div>
+
+<p>The śāstric tacit correction system constitutes a solution to a problem that contemporary organizations — research institutions, professional guilds, clinical medicine, software engineering — face without having named: the problem of maintaining quality in knowledge domains where the critical knowledge is not fully codifiable. The following parallels suggest that the śāstric tradition's tacit correction mechanisms were not historically parochial but structurally general:</p>
+
+<table class="data">
+  <thead>
+    <tr><th>Śāstric Tacit Mechanism</th><th>Contemporary Parallel</th><th>Current Gap in Contemporary Version</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="hi">Gurukula error correction</td><td>Medical residency supervision; software pair programming; apprenticeship in craft professions</td><td>Contemporary versions typically lack the systematic multi-disciplinary quality of the gurukula's cross-training requirement — residents specialize early, reducing inter-disciplinary tacit correction capacity</td></tr>
+    <tr><td class="hi">Śāstrārtha tacit judgment</td><td>Peer review; conference presentation; academic seminar</td><td>Contemporary peer review evaluates only explicit propositional content; the audience's tacit quality assessment (does this researcher actually know this domain?) is structurally excluded from the evaluation protocol</td></tr>
+    <tr><td class="hi">Performance tradition feedback loop</td><td>Clinical trials; A/B testing; product iteration cycles</td><td>Contemporary empirical feedback typically operates on a much shorter time scale than the śāstric performance tradition's multi-generational correction cycle — gaining speed at the cost of depth of correction</td></tr>
+  </tbody>
+</table>
+
+<p>The most important specific lesson from the śāstric tacit correction system for contemporary knowledge management is the value of multi-disciplinary training as an error-detection mechanism. The gurukula system required students to study grammar, logic, ritual, and at least one practical discipline before specializing. This cross-training produced individuals capable of recognizing errors that specialists could not detect — because the error was visible only from the perspective of a neighboring discipline. Contemporary academic specialization has systematically reduced this cross-disciplinary detection capacity, producing knowledge workers who are excellent at detecting errors within their own framework but increasingly blind to errors visible from adjacent frameworks.</p>
+
+<div class="page-break" data-page="p. 40"></div>
+
+<!-- INTEGRATION -->
+<div class="chapter-head" id="integration">
+  <span class="ch-number">§17</span>
+  <h2>Integrating Vectors III and IV</h2>
+  <span class="ch-dn">तृतीयचतुर्थवेक्टरयोः एकीकरणम्</span>
+  <p class="ch-sub">How formal graph theory and tacit knowledge research complement each other</p>
+</div>
+
+<p>Vectors III and IV appear methodologically opposite: III uses quantitative formal methods (graph theory, network centrality measures) to analyze the textual record; IV uses qualitative ethnographic and archaeological methods to access knowledge that the textual record cannot contain. But they are fundamentally complementary, because they map different layers of the same phenomenon.</p>
+
+<p>The formal graph (Vector III) maps the explicit error-correction network — the part of the knowledge ecology's immune system that operated through public, recorded, textual debate. The tacit ecology (Vector IV) maps the implicit error-correction network — the part that operated through private practice, embodied transmission, and performance feedback. A complete theory of the śāstric knowledge ecology needs both maps: the explicit network shows the tradition's intellectual immune system; the tacit network shows its physiological immune system.</p>
+
+<p>The integration point is specific: where the formal graph analysis (Vector III) identifies texts that show anomalously low correction activity — low in-degree in the error-signal subgraph, few outgoing correction citations — Vector IV would predict that these are precisely the domains where tacit correction was doing the most work. The practical disciplines (Āyurveda, Śilpaśāstra, Gāndharvaveda) are predicted to show low explicit correction density in the formal graph precisely because their error correction was happening in the practice space rather than the textual space. Confirming this negative correlation between explicit correction density and practical discipline identity would be the key test of Vectors III and IV's integration.</p>
+
+<div class="panel research">
+  <h4>Research Pointer — The Integration Test</h4>
+  <p>The integration test hypothesis: in disciplines where tacit error correction is strongest (practice-based disciplines with living performance traditions), the formal citation graph should show the lowest correction-citation density. In disciplines where tacit error correction is weakest (purely textual disciplines with no performance tradition), the formal citation graph should show the highest correction-citation density. Testing this hypothesis requires both the Vector III citation graph and Vector IV ethnographic data for the same set of disciplines — a combined methodology that no existing research programme has attempted.</p>
+</div>
+
+<!-- REFERENCES -->
+<div class="chapter-head" id="references">
+  <span class="ch-number">REF</span>
+  <h2>References &amp; Bibliography</h2>
+</div>
+
+<div class="footnotes">
+  <h4>Graph Theory and Network Science</h4>
+  <div class="fn"><span class="fn-num">[G1]</span>Barabási, A-L. and Albert, R. (1999). "Emergence of Scaling in Random Networks." <em>Science</em> 286: 509–512. Foundational paper on scale-free networks — the source for Prediction 1 in §11.</div>
+  <div class="fn"><span class="fn-num">[G2]</span>Watts, D.J. and Strogatz, S.H. (1998). "Collective Dynamics of Small-World Networks." <em>Nature</em> 393: 440–442. Source for the small-world property — Prediction 2 in §11.</div>
+  <div class="fn"><span class="fn-num">[G3]</span>Burt, R.S. (1992). <em>Structural Holes: The Social Structure of Competition</em>. Cambridge MA: Harvard University Press. Source for the structural holes concept — Prediction 3 in §11.</div>
+  <div class="fn"><span class="fn-num">[G4]</span>Newman, M.E.J. (2010). <em>Networks: An Introduction</em>. Oxford: Oxford University Press. Comprehensive source for centrality measures (§10) and community detection algorithms.</div>
+  <div class="fn"><span class="fn-num">[G5]</span>Blondel, V.D. et al. (2008). "Fast Unfolding of Communities in Large Networks." <em>Journal of Statistical Mechanics</em> P10008. Source for the Louvain community detection algorithm applied in the community detection analysis of §10.</div>
+  <h4 style="margin-top:16px">Tacit Knowledge</h4>
+  <div class="fn"><span class="fn-num">[T1]</span>Polanyi, M. (1966). <em>The Tacit Dimension</em>. New York: Doubleday. Foundational source for the tacit knowledge concept applied to the śāstric tradition in §13–16.</div>
+  <div class="fn"><span class="fn-num">[T2]</span>Collins, H.M. (2010). <em>Tacit and Explicit Knowledge</em>. Chicago: University of Chicago Press. Extends Polanyi's framework with three-way distinction (relational, somatic, collective tacit knowledge) — all three types are present in the śāstric tacit correction system.</div>
+  <div class="fn"><span class="fn-num">[T3]</span>Lave, J. and Wenger, E. (1991). <em>Situated Learning: Legitimate Peripheral Participation</em>. Cambridge: Cambridge University Press. The "communities of practice" framework applied to understanding how gurukula tacit error correction functioned (§14).</div>
+  <h4 style="margin-top:16px">Sanskrit and Śāstric Sources</h4>
+  <div class="fn"><span class="fn-num">[S1]</span>Dharmakīrti. <em>Pramāṇavārttika</em>. Trans. R.C. Pandeya. Delhi: Motilal Banarsidass, 1989. Primary source for the Dharmakīrti bottleneck prediction in §11.</div>
+  <div class="fn"><span class="fn-num">[S2]</span>Śārṅgadeva. <em>Saṃgītaratnākara</em>. Trans. R.K. Shringy and P.L. Sharma. New Delhi: Munshiram Manoharlal, 1978. Source for the mṛdaṅga correction research pointer in §14.</div>
+  <div class="fn"><span class="fn-num">[S3]</span>Kavi, M.R. ed. (1926–64). <em>Nāṭyaśāstra with Abhinavabhāratī</em>. 4 vols. Baroda: GOS. Source for the karaṇa disagreement evidence in §15 (Category 2).</div>
+  <div class="fn"><span class="fn-num">[S4]</span>Gaṅgeśa. <em>Tattvacintāmaṇi</em>. Ed. Kamakhyanath Tarkavagisha. Calcutta, 1884–1901. Primary source for the Navya-Nyāya bridge prediction in §11.</div>
+  <div class="fn"><span class="fn-num">[S5]</span>Ganeri, J. (2019). "The Self: Naturalism, Consciousness, and the First-Person Stance." <em>Oxford Handbook of Indian Philosophy</em>. Provides context for understanding Dharmakīrti's correction cascade and its propagation into Navya-Nyāya.</div>
+</div>
+
+<div class="fnav">
+  <a href="module-1.html">← Module I: Framework &amp; Vectors I–II</a>
+  <a href="module-3.html">Module III: Vectors V &amp; VI →</a>
+</div>
+
+</div>
+</div>
+
+<script>
+const links=document.querySelectorAll('.sn-link');
+function onScroll(){
+  let cur='';
+  document.querySelectorAll('[id]').forEach(c=>{if(c.getBoundingClientRect().top<120)cur=c.id});
+  links.forEach(l=>{const h=l.getAttribute('href').replace('#','');l.classList.toggle('active',h===cur)});
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+links.forEach(l=>{if(l.getAttribute('href').startsWith('#')){l.addEventListener('click',e=>{e.preventDefault();document.getElementById(l.getAttribute('href').replace('#','')).scrollIntoView({behavior:'smooth'})})}});
+</script>
+</body>
+</html>
