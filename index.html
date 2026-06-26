@@ -22,6 +22,7 @@ body{background:var(--bg);color:var(--text);font-family:"EB Garamond",serif;font
 .dn{font-family:"Noto Serif Devanagari",serif}
 h1,h2,h3,h4,.cinzel{font-family:"Cinzel",serif;letter-spacing:.03em}
 .iast{font-family:"Cormorant Garamond";font-style:italic;color:var(--gold)}
+.skt-inline{font-family:"Noto Serif Devanagari",serif;font-size:1.05em;color:var(--gold-b)}
 .sidenav{position:fixed;left:0;top:0;height:100vh;width:270px;background:#0e0905;
   border-right:1px solid var(--border);overflow-y:auto;padding:20px 0 40px;z-index:50}
 .sidenav::-webkit-scrollbar{width:4px}
@@ -74,6 +75,7 @@ p{margin-bottom:16px}p:last-child{margin-bottom:0}
 .panel.gold{border-left:3px solid var(--gold)}.panel.gold h4{color:var(--gold-b)}
 .panel.v3{border-left:3px solid var(--v3)}.panel.v3 h4{color:var(--v3b)}
 .panel.v4{border-left:3px solid var(--v4)}.panel.v4 h4{color:var(--v4b)}
+.panel.crimson{border-left:3px solid var(--crimson)}
 .skt{font-family:"Noto Serif Devanagari";font-size:20px;color:var(--cream);background:var(--panel2);border-left:3px solid var(--crimson-b);padding:14px 20px;margin:18px 0;border-radius:0 4px 4px 0;line-height:2}
 blockquote{border-left:3px solid var(--gold);padding:10px 20px;margin:18px 0;font-family:"Cormorant Garamond";font-style:italic;font-size:18px;color:var(--text);background:rgba(201,168,106,0.04)}
 blockquote cite{display:block;margin-top:6px;font-size:13px;color:var(--faint);font-style:normal}
@@ -102,7 +104,133 @@ table.data td.hi{color:var(--saffron);font-family:"Cinzel";font-size:12px}
 .fnav{display:flex;justify-content:space-between;align-items:center;margin-top:50px;padding-top:18px;border-top:1px solid var(--border)}
 .fnav a{color:var(--gold);text-decoration:none;font-family:"Cinzel";font-size:12px;letter-spacing:.05em}
 .fnav a:hover{color:var(--gold-b)}
-@media(max-width:900px){.sidenav{display:none}.main-wrap{margin-left:0}.content{padding:28px 18px 60px}}
+
+/* ═══ EXTENSION SECTION COMPONENTS (ported from Module I) ═══ */
+.cascade-timeline{position:relative;margin:28px 0;padding-left:32px}
+.cascade-timeline::before{content:"";position:absolute;left:10px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--crimson),var(--gold),var(--jade))}
+.ct-step{position:relative;margin-bottom:28px}
+.ct-step::before{content:"";position:absolute;left:-27px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--crimson-b);border:2px solid var(--bg)}
+.ct-step h4{font-family:"Cinzel",serif;font-size:13px;color:var(--gold-b);margin-bottom:6px;letter-spacing:.04em}
+.ct-step p{font-size:14.5px;color:var(--dim);line-height:1.72;margin:0}
+.ct-step.mid::before{background:var(--gold)}
+.ct-step.late::before{background:var(--jade-b)}
+
+.evidence-matrix{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0}
+.em-cell{background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:14px 16px}
+.em-cell .em-label{font-family:"Cinzel",serif;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--saffron);margin-bottom:6px}
+.em-cell .em-val{font-size:14px;color:var(--text);line-height:1.6}
+
+.comparison-band{display:grid;grid-template-columns:1fr 40px 1fr;gap:0;margin:22px 0;align-items:start}
+.cb-left,.cb-right{background:var(--panel2);border:1px solid var(--border);padding:16px 18px}
+.cb-left{border-radius:4px 0 0 4px}
+.cb-right{border-radius:0 4px 4px 0}
+.cb-mid{display:flex;align-items:center;justify-content:center;background:rgba(122,31,43,0.12);border-top:1px solid var(--border);border-bottom:1px solid var(--border);height:100%;color:var(--crimson-b);font-family:"Cinzel";font-size:18px}
+.cb-head{font-family:"Cinzel";font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--saffron);margin-bottom:8px}
+.cb-left p,.cb-right p{font-size:14px;color:var(--dim);line-height:1.65;margin:0}
+
+.depth-accordion{margin:18px 0}
+.da-item{border:1px solid var(--border);border-radius:4px;margin-bottom:8px;overflow:hidden}
+.da-trigger{width:100%;background:var(--panel);border:none;color:var(--cream);font-family:"Cinzel",serif;font-size:12px;letter-spacing:.06em;padding:13px 18px;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.da-trigger:hover{background:rgba(201,168,106,0.06)}
+.da-trigger .da-arrow{color:var(--gold);font-size:14px;transition:transform .25s;display:inline-block}
+.da-trigger .da-arrow.open{transform:rotate(90deg)}
+.da-body{display:none;padding:16px 18px;background:var(--panel2);font-size:14.5px;color:var(--dim);line-height:1.75;border-top:1px solid var(--border)}
+.da-body.open{display:block}
+
+.highlighted-term{background:rgba(201,168,106,0.1);border:1px solid rgba(201,168,106,0.25);border-radius:3px;padding:1px 6px;color:var(--gold-b);font-family:"Cormorant Garamond",serif;font-style:italic}
+
+.case-badge{display:inline-block;font-family:"Cinzel",serif;font-size:9px;letter-spacing:.18em;text-transform:uppercase;border-radius:3px;padding:3px 9px;margin-bottom:10px}
+.cb-type1{background:rgba(138,74,43,0.15);color:var(--v3b);border:1px solid var(--v3)}
+.cb-type2{background:rgba(43,90,43,0.15);color:var(--v4b);border:1px solid var(--v4)}
+.cb-type3{background:rgba(122,79,160,0.15);color:var(--v1b);border:1px solid var(--v1)}
+
+.theorem-box{background:rgba(122,31,43,0.08);border:1px solid var(--crimson);border-radius:5px;padding:18px 22px;margin:18px 0}
+.theorem-box .tb-label{font-family:"Cinzel",serif;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--crimson-b);margin-bottom:8px}
+.theorem-box p{font-family:"Cormorant Garamond",serif;font-size:17px;font-style:italic;color:var(--text);line-height:1.8;margin:0}
+
+.pullout{float:right;width:38%;margin:0 0 18px 22px;padding:14px 16px;border-left:3px solid var(--saffron);background:var(--panel);font-family:"Cormorant Garamond",serif;font-style:italic;font-size:16.5px;color:var(--dim);line-height:1.65}
+.clearfix::after{content:"";display:table;clear:both}
+
+/* ═══ EXPANDED ABSTRACT COMPONENTS (ported from Module I) ═══ */
+.abs-cover{min-height:60vh;display:flex;flex-direction:column;justify-content:center;padding:70px 0 50px;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.abs-cover::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(122,31,43,0.09),transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(201,168,106,0.05),transparent 55%);pointer-events:none}
+.abs-eyebrow{font-family:"Cinzel",serif;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--saffron);margin-bottom:22px}
+.abs-main-title{font-family:"Cinzel",serif;font-size:30px;color:var(--cream);line-height:1.25;max-width:820px;margin-bottom:10px}
+.abs-dn-line{font-family:"Noto Serif Devanagari",serif;font-size:22px;color:var(--gold-b);margin-bottom:22px;line-height:1.5}
+.abs-tagline{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:19px;color:var(--dim);max-width:740px;line-height:1.7;margin-bottom:32px}
+.abs-meta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.abs-tag{font-family:"Cinzel",serif;font-size:9px;letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--border);color:var(--faint);padding:4px 12px;border-radius:3px}
+
+.abs-running-head{font-family:"Source Code Pro",monospace;font-size:10px;letter-spacing:.12em;color:var(--faint);text-transform:uppercase;margin:52px 0 26px;padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between}
+
+.dropcap::first-letter{font-family:"Cinzel",serif;font-size:5.2em;line-height:.78;float:left;margin:0 10px 0 0;color:var(--crimson-b);font-weight:700}
+
+.abs-pullquote{border-top:2px solid var(--gold);border-bottom:2px solid var(--gold);padding:26px 0;margin:36px 0;font-family:"Cormorant Garamond",serif;font-size:22px;font-style:italic;color:var(--cream);line-height:1.6;text-align:center;clear:both}
+.abs-pullquote cite{display:block;margin-top:10px;font-size:12px;letter-spacing:.1em;color:var(--faint);font-style:normal;font-family:"Cinzel",serif;text-transform:uppercase}
+
+.abs-two-col{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin:22px 0}
+.abs-two-col p{font-size:15.5px;color:var(--dim);line-height:1.82;margin-bottom:14px}
+
+.abs-proposition{background:linear-gradient(135deg,rgba(122,31,43,0.07),rgba(201,168,106,0.05));border:1px solid rgba(201,168,106,0.2);border-radius:6px;padding:26px 30px;margin:30px 0;position:relative}
+.abs-proposition::before{content:"PROPOSITION";position:absolute;top:-10px;left:24px;font-family:"Cinzel",serif;font-size:8.5px;letter-spacing:.22em;background:var(--bg);padding:0 10px;color:var(--gold)}
+.abs-proposition p{font-family:"Cormorant Garamond",serif;font-size:18.5px;color:var(--text);line-height:1.78;margin:0}
+
+.abs-six-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0}
+.abs-six-cell{border:1px solid var(--border);border-radius:5px;padding:16px 16px 14px;background:var(--panel);position:relative}
+.abs-six-cell .asix-num{font-family:"Cinzel",serif;font-size:28px;color:rgba(201,168,106,0.18);line-height:1;position:absolute;top:10px;right:14px}
+.abs-six-cell .asix-label{font-family:"Cinzel",serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--saffron);margin-bottom:7px}
+.abs-six-cell p{font-size:13.5px;color:var(--dim);line-height:1.65;margin:0}
+
+.abs-marginal{background:var(--panel);border-left:2px solid var(--crimson-b);padding:13px 15px;margin:0 0 20px 0;font-size:13.5px;color:var(--dim);line-height:1.65}
+.abs-marginal .am-head{display:block;font-family:"Cinzel",serif;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--crimson-b);margin-bottom:6px}
+
+.abs-claims{counter-reset:claim-counter;margin:24px 0;list-style:none;padding:0}
+.abs-claims li{counter-increment:claim-counter;display:flex;gap:16px;margin-bottom:18px;font-size:15.5px;color:var(--dim);line-height:1.78}
+.abs-claims li::before{content:counter(claim-counter,upper-roman);font-family:"Cinzel",serif;font-size:11px;color:var(--gold);min-width:28px;padding-top:3px;letter-spacing:.08em}
+
+.abs-rule{border:none;border-top:1px solid var(--border);margin:44px 0 38px}
+.abs-rule-gold{border:none;border-top:1px solid rgba(201,168,106,0.3);margin:44px 0 38px}
+
+.abs-timeline{display:flex;gap:0;margin:28px 0;overflow-x:auto}
+.abs-tl-item{flex:1;min-width:110px;border-right:1px solid var(--border);padding:14px 14px 12px;background:var(--panel)}
+.abs-tl-item:last-child{border-right:none}
+.abs-tl-item:nth-child(even){background:var(--panel2)}
+.abs-tl-date{font-family:"Cinzel",serif;font-size:11px;color:var(--gold);margin-bottom:5px}
+.abs-tl-item p{font-size:12.5px;color:var(--dim);line-height:1.55;margin:0}
+
+.abs-vector-row{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;padding:14px 0;border-bottom:1px solid rgba(58,46,34,.35)}
+.abs-vector-row:last-child{border-bottom:none}
+.avr-num{font-family:"Cinzel",serif;font-size:22px;color:var(--crimson-b);line-height:1;padding-top:4px}
+.avr-body h5{font-family:"Cinzel",serif;font-size:12px;color:var(--gold-b);margin-bottom:5px;letter-spacing:.04em}
+.avr-body p{font-size:14px;color:var(--dim);line-height:1.68;margin:0}
+
+.abs-impact-row{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0}
+.abs-impact-item{flex:1;min-width:120px;background:var(--panel2);border-top:3px solid var(--crimson);padding:14px 15px 12px;border-radius:0 0 4px 4px}
+.abs-impact-item:nth-child(2){border-top-color:var(--gold)}
+.abs-impact-item:nth-child(3){border-top-color:var(--jade-b)}
+.abs-impact-item:nth-child(4){border-top-color:var(--v1b)}
+.abs-impact-item .aii-head{font-family:"Cinzel",serif;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-bottom:7px}
+.abs-impact-item p{font-size:13.5px;color:var(--dim);line-height:1.6;margin:0}
+
+.keywords-panel{background:var(--panel);border:1px solid var(--gold);border-radius:5px;padding:22px 26px;margin:36px 0}
+.keywords-panel h4{font-family:"Cinzel";font-size:13px;color:var(--gold-b);margin-bottom:10px}
+.keywords-panel p{font-size:14px;color:var(--dim);line-height:1.75;margin:0}
+
+@media(max-width:900px){
+  .sidenav{display:none}.main-wrap{margin-left:0}.content{padding:28px 18px 60px}
+  .grid2,.abs-two-col{grid-template-columns:1fr}
+  .evidence-matrix{grid-template-columns:1fr}
+  .abs-six-grid{grid-template-columns:1fr 1fr}
+  .comparison-band{grid-template-columns:1fr}
+  .cb-mid{display:none}
+  .pullout{float:none;width:100%;margin:16px 0}
+  .abs-timeline{flex-direction:column}
+  .abs-tl-item{border-right:none;border-bottom:1px solid var(--border)}
+}
+@media(max-width:500px){
+  .abs-six-grid{grid-template-columns:1fr}
+  .abs-impact-row{flex-direction:column}
+}
 </style>
 </head>
 <body>
@@ -124,7 +252,25 @@ table.data td.hi{color:var(--saffron);font-family:"Cinzel";font-size:12px}
   <a class="sn-link" href="#tacit-evidence">§15 · Evidence Base</a>
   <a class="sn-link" href="#tacit-modern">§16 · Modern Implications</a>
   <a class="sn-link" href="#integration">§17 · Integrating III &amp; IV</a>
+
+  <div class="sn-group-label">Extension Sections</div>
+  <a class="sn-link" href="#case-mrdanga">§18 · Case Study: The Mṛdaṅga Correction Network</a>
+  <a class="sn-link" href="#contemporary2">§19 · Contemporary Relevance</a>
+  <a class="sn-link" href="#disputed2">§20 · Disputed &amp; Boundary Cases</a>
+  <a class="sn-link" href="#synthesis2">§21 · Synthesis &amp; Programme</a>
+  <a class="sn-link" href="#references2">§22 · Extended References</a>
+
+  <div class="sn-group-label">Expanded Abstract</div>
+  <a class="sn-link" href="#abs2-genesis">Abstract · I — Genesis of the Question</a>
+  <a class="sn-link" href="#abs2-claim">Abstract · II — The Central Claim</a>
+  <a class="sn-link" href="#abs2-ecology">Abstract · III — Concept Defined</a>
+  <a class="sn-link" href="#abs2-relation">Abstract · IV — Relation to Vectors I &amp; II</a>
+  <a class="sn-link" href="#abs2-vectors">Abstract · V — Four-Vector Summary</a>
+  <a class="sn-link" href="#abs2-stakes">Abstract · VI — Scholarly Stakes</a>
+
+  <div class="sn-group-label">References</div>
   <a class="sn-link" href="#references">References</a>
+
   <div class="sn-group-label">All Modules</div>
   <div class="module-pills">
     <a class="mod-pill" href="module-1.html">I</a>
@@ -434,7 +580,469 @@ table.data td.hi{color:var(--saffron);font-family:"Cinzel";font-size:12px}
   <p>The integration test hypothesis: in disciplines where tacit error correction is strongest (practice-based disciplines with living performance traditions), the formal citation graph should show the lowest correction-citation density. In disciplines where tacit error correction is weakest (purely textual disciplines with no performance tradition), the formal citation graph should show the highest correction-citation density. Testing this hypothesis requires both the Vector III citation graph and Vector IV ethnographic data for the same set of disciplines — a combined methodology that no existing research programme has attempted.</p>
 </div>
 
-<!-- REFERENCES -->
+<div class="page-break" data-page="p. 42"></div>
+
+<!-- ═══════════════════════════════════════════════════════
+     EXTENSION SECTIONS §18–§22
+═══════════════════════════════════════════════════════ -->
+
+<!-- §18 CASE STUDY -->
+<div class="chapter-head" id="case-mrdanga" style="margin:60px 0 32px">
+  <span class="ch-number">§18 · Extended Case Study</span>
+  <h2>The Mṛdaṅga Correction Network: A Complete Vector III/IV Convergence Event</h2>
+  <span class="ch-dn">मृदङ्गसंशोधनजालम् — तृतीयचतुर्थवेक्टरयोः सम्पूर्णसंगमः</span>
+  <p class="ch-sub">How a single tacit correction — the black tuning paste calibration — generates a fully reconstructible graph-theoretic signature</p>
+</div>
+
+<span class="case-badge cb-type1">Extended Case Study · Vector III + Vector IV Convergence</span>
+
+<p>The mṛdaṅga tuning discrepancy introduced as a research pointer in §14 deserves extended treatment, because it is the single case in the śāstric corpus where Vector III's formal graph methodology and Vector IV's tacit-ecology methodology can both be applied to the same correction event — and where their predictions can be directly compared against each other rather than merely asserted as complementary in the abstract.</p>
+
+<div class="section-label">The Textual Layer: What Vector III's Graph Would Show</div>
+
+<p>The Saṃgītaratnākara's prescribed frequency ratios for mṛdaṅga tuning are cited, glossed, or reproduced in at least eleven subsequent Saṅgīta-śāstra texts between the 13th and 19th centuries. A Vector III citation-graph analysis of this textual lineage would show a dense, well-connected cluster: the Saṃgītaratnākara as a high-eigenvector-centrality hub, its ratios reproduced with only minor terminological variation across the commentarial descendants, and — critically — <em>no disagreement edges</em>. No text in the formal citation graph corrects the Saṃgītaratnākara's stated ratios. By the Vector III methodology alone, this would register as a stable, uncontested, fully-transmitted technical prescription: a textually closed case.</p>
+
+<div class="evidence-matrix">
+  <div class="em-cell">
+    <div class="em-label">In-degree (E⁻ subgraph)</div>
+    <div class="em-val">Zero disagreement citations across eleven descendant texts spanning six centuries — the formal graph shows no correction activity whatsoever.</div>
+  </div>
+  <div class="em-cell">
+    <div class="em-label">Eigenvector centrality</div>
+    <div class="em-val">High — the Saṃgītaratnākara is cited approvingly by every major subsequent Saṅgīta-śāstra compilation, conferring strong textual prestige.</div>
+  </div>
+  <div class="em-cell">
+    <div class="em-label">Temporal stability</div>
+    <div class="em-val">The ratios are reproduced essentially verbatim from the 13th to the 19th century — by the graph's own measure, the most stable node in the entire musicological subgraph.</div>
+  </div>
+</div>
+
+<div class="section-label">The Tacit Layer: What Vector IV's Ethnography Shows</div>
+
+<div class="clearfix">
+  <div class="pullout">"The graph that shows no correction activity is not showing an absence of correction. It is showing a correction that the textual medium was never going to be able to register — because the correction lives in the hands of the calibrating drummer, not in the citation behaviour of the commentator."</div>
+  <p>Fieldwork among practicing mṛdaṅgists — documented informally across multiple Karnatak performance lineages — establishes that the literal frequency ratios in the Saṃgītaratnākara, if followed without modification, produce intonation that working musicians consider unusable in ensemble performance. The actual tuning practice transmitted from guru to disciple uses a calibration procedure involving the application of a black tuning paste (śoṇitam or syāhī, depending on regional terminology) to the drumhead, adjusting the effective vibrating mass and producing a materially different frequency relationship from the one the text specifies.</p>
+  <p>Every practicing mṛdaṅgist knows this discrepancy. It is taught, corrected, and refined entirely within the gurukula transmission channel described in §14 — never written down, never cited, never entering the commentarial stack that Vector III's methodology would detect. This is a textbook case of what §14 calls Tacit Mechanism 1 (the gurukula as error-correction environment) operating in a domain where the textual record shows, by every formal measure, complete stability.</p>
+</div>
+
+<div class="section-label">The Convergence Test</div>
+
+<p>This case constitutes a direct empirical test of the integration hypothesis proposed in §17: that practical disciplines with living performance traditions will show <em>low</em> explicit correction density in the formal graph precisely where tacit correction is doing the most work. The mṛdaṅga case confirms the prediction in its most extreme form — not merely low correction density but <em>zero</em> measured correction density in a domain where the actual, lived correction activity (the calibration procedure) is universal, continuous, and load-bearing for the entire performance tradition. If Vector III's methodology were applied to Saṅgīta-śāstra in isolation, without Vector IV's ethnographic supplement, the methodology would produce a confidently wrong conclusion: that the mṛdaṅga tuning prescription was never corrected.</p>
+
+<div class="theorem-box">
+  <div class="tb-label">Formal Proposition — The Silent Correction Theorem</div>
+  <p>For any practice-based śāstric discipline D, if the formal citation graph G shows a node n with zero in-degree in the error-signal subgraph E⁻ across a temporal span exceeding two centuries, this is not by itself evidence that n's prescription was never corrected. It is evidence that requires Vector IV ethnographic supplementation before any claim about n's correction history can be made. The absence of a textual correction signal is uninformative without independent confirmation that no tacit correction channel exists for the domain in question.</p>
+</div>
+
+<div class="panel research">
+  <h4>Research Proposal — A Systematic Tacit-Graph Discrepancy Survey</h4>
+  <p>The mṛdaṅga case suggests a general research method: for every practice-based śāstric domain (Āyurvedic dosage, Śilpaśāstra proportion, Nāṭyaśāstra karaṇa execution, Gāndharvaveda instrument tuning and construction), compare the Vector III citation-graph correction signature against Vector IV ethnographic or archaeological evidence of actual practice. The prediction, generalizing from the mṛdaṅga case, is that every practice-based domain will show a similar "silent correction" gap — and that the size of the gap will correlate with how thoroughly embodied (as opposed to propositional) the domain's primary knowledge medium is. No survey of this kind has been attempted for any śāstric discipline.</p>
+</div>
+
+<div class="page-break" data-page="§18 ends"></div>
+
+<!-- §19 CONTEMPORARY RELEVANCE -->
+<div class="chapter-head" id="contemporary2" style="margin:60px 0 32px">
+  <span class="ch-number">§19</span>
+  <h2>Contemporary Relevance: Graph Models and Tacit Knowledge in Modern Research Management</h2>
+  <span class="ch-dn">आधुनिकसंशोधनप्रबन्धने रेखाचित्र-अव्यक्तज्ञानयोः उपयोगः</span>
+  <p class="ch-sub">Six lessons specific to Vectors III and IV for contemporary institutions managing formal and tacit knowledge simultaneously</p>
+</div>
+
+<p class="abstract">Where Module I's §14 (Contemporary Relevance) drew lessons from the pūrvapakṣa system and empirical forcing mechanisms, this section draws lessons specific to the formal-graph and tacit-ecology methodologies developed in Vectors III and IV — lessons that bear directly on how contemporary organizations measure, audit, and fail to measure the knowledge they actually hold.</p>
+
+<div class="section-label">Lesson 1 — The Citation Graph Is Not the Knowledge System</div>
+
+<p>The mṛdaṅga case (§18) generalizes directly to contemporary research evaluation. Bibliometric and citation-graph methods — now standard in research assessment exercises worldwide — measure exactly the layer that Vector III formalizes: explicit, textual, citable correction activity. They are structurally blind to the layer Vector IV formalizes: tacit correction operating through apprenticeship, peer practice, and embodied skill transmission. A clinical department with an excellent citation profile may have a broken tacit-correction culture (junior doctors silently learning workarounds that never reach the published literature); a citation-quiet department may have an exceptionally rigorous tacit culture. The śāstric model predicts — and the mṛdaṅga case demonstrates — that citation metrics alone cannot distinguish these cases.</p>
+
+<div class="section-label">Lesson 2 — Practice-Based Disciplines Need Different Audit Instruments</div>
+
+<p>Vector III/IV's integration hypothesis (§17) implies a general principle for research and quality auditing: disciplines whose knowledge is substantially embodied (surgery, craft engineering, performance arts, clinical diagnosis) require audit instruments built for tacit correction — direct observation, apprenticeship review, peer-practice assessment — rather than instruments built for textual correction (citation counts, publication review). Applying textual-correction instruments to embodied disciplines produces exactly the "silent correction" blind spot the mṛdaṅga case identifies.</p>
+
+<div class="comparison-band">
+  <div class="cb-left">
+    <div class="cb-head">Textual-Correction Instruments</div>
+    <p>Citation analysis, publication review, formal peer review of written claims. Well-suited to theoretical and propositional disciplines where the knowledge medium is the text itself. Systematically under-detects correction activity in embodied disciplines.</p>
+  </div>
+  <div class="cb-mid">↔</div>
+  <div class="cb-right">
+    <div class="cb-head">Tacit-Correction Instruments</div>
+    <p>Direct observation of practice, apprenticeship-stage review, structured ethnographic interview, performance audit by qualified peers. Well-suited to embodied disciplines. Resource-intensive and harder to scale than citation analysis — which is precisely why it is under-deployed.</p>
+  </div>
+</div>
+
+<div class="section-label">Lesson 3 — Network Topology as an Early-Warning Instrument</div>
+
+<p>Vector III's graph-theoretic predictions (§9–§12) are not merely retrospective description — applied prospectively to a living knowledge network, the same measures (betweenness centrality, structural holes, community detection) could function as an early-warning system. A contemporary research network in which betweenness centrality is concentrated in a small number of bridging individuals, with no redundant bridges, has the same topological fragility predicted for the Arthaśāstra's structural isolation (§11) — the loss of a single bridging scholar could sever an entire inter-disciplinary correction pathway, exactly as the Buddhist severance point (§11) shows for the historical case.</p>
+
+<div class="section-label">Lesson 4 — Productive Silence Has a Contemporary Cost Structure</div>
+
+<p>Vector IV's tacit mechanisms operate cheaply within a living tradition (correction is free at the point of use — the teacher simply corrects the student) but become expensive to reconstruct after the tradition has thinned. The mṛdaṅga calibration procedure remains transmissible today because performance lineages remain unbroken; many comparable tacit corrections in less institutionally robust craft traditions (certain regional Śilpaśāstra building techniques, for instance) have likely already been lost in the gap between gurukula-style transmission collapsing and academic documentation arriving too late. This generates an urgent, time-bound research priority distinct from the textual research priorities of Vectors I–III: tacit knowledge documentation has a closing window that citation-graph research does not share.</p>
+
+<div class="section-label">Lesson 5 — Formal Models Require Negative-Result Honesty</div>
+
+<p>Vector III's falsifiability conditions (§21 below; see also Module I §16) commit the graph methodology to reporting null results — cases where the predicted scale-free distribution, small-world property, or structural-hole pattern does not appear. Contemporary network-science applications to organizational knowledge management frequently suffer from publication bias toward confirmatory findings. The śāstric model's value as a methodological exemplar depends specifically on the willingness, demonstrated in §20 below, to report cases where the model's predictions fail or only partially hold.</p>
+
+<div class="section-label">Lesson 6 — Embodied Knowledge Needs Institutional Redundancy, Not Just Textual Redundancy</div>
+
+<p>Module I's redundancy property (§2) was illustrated primarily through textual redundancy — multiple disciplines addressing the same question. Vector IV adds a second, distinct redundancy requirement: multiple independent tacit-transmission lineages for the same embodied skill, so that the loss of any single lineage (a single guru's death without a fully trained successor) does not eliminate the tacit knowledge entirely. Contemporary institutions that rely on a single "tribal knowledge" holder for a critical embodied process exhibit exactly the fragility that multi-lineage gurukula transmission was structurally designed to avoid.</p>
+
+<div class="page-break" data-page="§19 ends"></div>
+
+<!-- §20 DISPUTED CASES -->
+<div class="chapter-head" id="disputed2" style="margin:60px 0 32px">
+  <span class="ch-number">§20</span>
+  <h2>Disputed and Boundary Cases for Vectors III and IV</h2>
+  <span class="ch-dn">तृतीयचतुर्थवेक्टरयोः सीमाविवादाः</span>
+  <p class="ch-sub">Four cases where the formal graph model or the tacit-correction model faces genuine difficulty</p>
+</div>
+
+<p>Consistent with the intellectual honesty standard set in Module I §15, this section presents cases where Vector III's graph methodology or Vector IV's tacit-ecology methodology encounters real difficulty — not merely unresolved detail, but cases that test the limits of what each methodology can claim.</p>
+
+<div class="section-label">Disputed Case 1 — The Unfalsifiability Risk in Tacit Correction Claims</div>
+
+<p>Vector IV's central methodological vulnerability is structural: because tacit correction by definition leaves no direct textual trace, any claim that "tacit correction was happening here" is difficult to falsify using the same evidentiary standard the tradition itself would recognize. The mṛdaṅga case (§18) is unusually well-evidenced because the performance tradition survives today and can be directly observed. For domains where the performance or craft tradition has already lapsed — lost Śilpaśāstra construction techniques, extinct regional Āyurvedic diagnostic practices — Vector IV's claims about tacit correction activity become unfalsifiable in practice: there is no living tradition against which to check them, and the textual record by hypothesis does not register them.</p>
+
+<div class="panel crimson">
+  <h4>Boundary Condition 1: The Limits of Inference to Tacit Activity</h4>
+  <p>Vector IV's methodology is on its strongest ground only where ethnographic access to a living tradition exists (Category 4 evidence, §15) or where archaeological/architectural deviation can be independently measured (Category 5 evidence, §15). For lapsed traditions, claims about tacit correction activity should be treated as plausible historical conjecture rather than as established findings — a distinction this white paper series has not always maintained with sufficient rigor in its more speculative passages (e.g., the cascade reconstructions of §8 in Module I, which infer correction dynamics from surviving texts without ethnographic confirmation of any tacit-layer component).</p>
+</div>
+
+<div class="section-label">Disputed Case 2 — Graph Predictions That Depend on Annotation Choices Not Yet Tested</div>
+
+<p>Vector III's six novel predictions (§11) are stated with confidence appropriate to a research proposal, not to confirmed findings. Several of the predictions — particularly the Dharmakīrti Bottleneck and the Buddhist Severance Point — depend heavily on how the underlying citation graph's nodes are dated and how disciplinary affiliation is assigned to multi-disciplinary texts (the annotation challenges identified in §6 of Module I, Challenges 1–2). Different reasonable annotation choices could shift betweenness-centrality rankings substantially. Until the annotation methodology is itself validated through inter-annotator agreement testing (as proposed in Module I §5, Stage 2), the specific numerical predictions in §11 should be read as illustrative of the kind of result the methodology would produce, not as findings already in hand.</p>
+
+<div class="section-label">Disputed Case 3 — The Risk of Retrofitting Ecological Metaphors</div>
+
+<p>Both Vectors III and IV import vocabulary from systems ecology and network science (scale-free distributions, structural holes, tacit knowledge in Polanyi's sense) and apply it to a 2,500-year-old textual and practice tradition. A standing methodological risk, acknowledged here directly, is that the ecological and graph-theoretic vocabulary may be doing more rhetorical work than explanatory work — that the śāstric tradition's actual correction dynamics could be redescribed in this vocabulary without the vocabulary adding genuine predictive content beyond what a historian already knew. The falsifiability conditions specified in §21 below are this paper's attempt to guard against that risk, but the risk is real and should be weighed by any reader assessing the framework's claims.</p>
+
+<div class="section-label">Disputed Case 4 — Tacit Correction as Sometimes Indistinguishable from Simple Practical Drift</div>
+
+<p>The mṛdaṅga calibration procedure (§18) is presented as a tacit <em>correction</em> — implying that the original textual prescription was, in some sense, wrong and the practice tradition fixed it. An alternative and equally consistent reading is that the practice simply drifted from the text over centuries for reasons unrelated to error correction (changes in drumhead materials, regional taste in timbre, the simple accumulation of small unintentional variations) and that "correction" is an interpretive overlay this paper has imposed on what may be undirected practical drift. Distinguishing genuine tacit correction (a directed response to a perceived inadequacy in the textual prescription) from undirected practical drift requires evidence — testimony from practitioners about why the calibration procedure is used — that has not yet been systematically gathered for the mṛdaṅga case or for most of the other tacit-correction examples in this module.</p>
+
+<div class="page-break" data-page="§20 ends"></div>
+
+<!-- §21 SYNTHESIS -->
+<div class="chapter-head" id="synthesis2" style="margin:60px 0 32px">
+  <span class="ch-number">§21 · Synthesis</span>
+  <h2>Vectors III and IV as a Funded Research Programme</h2>
+  <span class="ch-dn">तृतीयचतुर्थवेक्टरौ संशोधनकार्यक्रमरूपेण</span>
+  <p class="ch-sub">A phased programme combining computational graph analysis and ethnographic fieldwork, with falsifiability conditions specific to this module</p>
+</div>
+
+<p class="abstract">Following the funding-programme template established in Module I §16 for Vectors I–II, this section specifies a comparable phased programme for Vectors III and IV — necessarily combining a computational graph-analysis track (Vector III) with an ethnographic and archaeological fieldwork track (Vector IV) that share infrastructure but require substantially different expertise and institutional partners.</p>
+
+<div class="section-label">Programme Architecture: Two Parallel Tracks, Three Phases</div>
+
+<div class="cascade-timeline">
+  <div class="ct-step">
+    <h4>Phase 1 (Years 1–2) — Graph Construction and Fieldwork Scoping</h4>
+    <p>Graph track: construction of the formal Error Signal Subgraph G⁻ from the Module I Phase 1 citation corpus (the ŚCN), with the centrality, clustering, and community-detection tools specified in §10 applied for the first time at full corpus scale. Fieldwork track: a scoping survey of living practice-based traditions (Kūṭiyāṭṭam, āsāri temple-building communities, Karnatak and Hindustani percussion lineages, Kerala/Karnataka vaidya lineages) to identify which traditions remain accessible for the ethnographic work specified in §15 Category 4, prioritizing traditions assessed as most at institutional risk of lapsing within the programme's five-year window.</p>
+  </div>
+  <div class="ct-step mid">
+    <h4>Phase 2 (Years 2–4) — Hypothesis Testing and Tacit-Correction Documentation</h4>
+    <p>Graph track: formal testing of Hypotheses 1–3 (§9) and Graph Predictions 1–6 (§11) against the constructed ŚCN, with results reported regardless of outcome per the negative-result honesty principle (§19, Lesson 5). Fieldwork track: structured documentation of tacit correction mechanisms in the prioritized living traditions, following the five evidence categories of §15, with particular attention to gathering practitioner testimony (per Disputed Case 4, §20) that can distinguish directed correction from undirected drift.</p>
+  </div>
+  <div class="ct-step late">
+    <h4>Phase 3 (Year 4–5) — Convergence Testing and Synthesis</h4>
+    <p>Joint activity: the Integration Test proposed in §17 — systematically comparing, for every discipline where both tracks have produced data, the formal graph's correction-density measure against the fieldwork track's tacit-correction density measure, testing the predicted negative correlation directly rather than illustratively (as the single mṛdaṅga case in §18 does). Output: a synthesis volume documenting which disciplines confirm the integration hypothesis, which do not, and what revised model best fits the combined evidence.</p>
+  </div>
+</div>
+
+<div class="section-label">Falsifiability Conditions Specific to Vectors III and IV</div>
+
+<div class="depth-accordion">
+  <div class="da-item">
+    <button class="da-trigger">H1 / H2 (Module-Level, §9) — Falsification Conditions <span class="da-arrow">▶</span></button>
+    <div class="da-body">
+      <p>As specified in §9's table: the scale-free prediction is falsified by a Poisson or uniform degree distribution; the small-world prediction is falsified if the clustering coefficient is no higher than a comparable random graph; the structural-holes prediction is falsified by the absence of identifiable betweenness-centrality peaks at the predicted multi-disciplinary scholar nodes.</p>
+    </div>
+  </div>
+  <div class="da-item">
+    <button class="da-trigger">The Integration Hypothesis (§17) — Falsification Conditions <span class="da-arrow">▶</span></button>
+    <div class="da-body">
+      <p>The integration hypothesis is falsified if, across a representative sample of practice-based disciplines tested in Phase 3, there is no statistically discernible negative correlation between formal-graph correction density and fieldwork-documented tacit-correction density. A single confirming case (the mṛdaṅga correction, §18) is illustrative but not sufficient; the hypothesis requires testing across multiple disciplines (Āyurveda, Śilpaśāstra, Nāṭyaśāstra, Gāndharvaveda at minimum) before it can be considered supported rather than merely consistent with one example.</p>
+    </div>
+  </div>
+  <div class="da-item">
+    <button class="da-trigger">The Silent Correction Theorem (§18) — Falsification Conditions <span class="da-arrow">▶</span></button>
+    <div class="da-body">
+      <p>The Silent Correction Theorem is falsified if a substantial proportion of practice-based domains with zero-correction formal graph signatures turn out, upon ethnographic investigation, to have no corresponding tacit correction activity at all — that is, if the textual silence is simply silence, with no compensating tacit layer. If this is the dominant pattern rather than the exception, the theorem should be revised to a narrower claim about specific types of embodied knowledge domains rather than a general rule.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section-label">Projected Outputs and Partnerships</div>
+
+<div class="stats">
+  <div class="stat"><div class="sv">11+</div><div class="sl">Practice traditions surveyed for tacit-correction fieldwork</div></div>
+  <div class="stat"><div class="sv">6</div><div class="sl">Graph predictions tested against full ŚCN corpus</div></div>
+  <div class="stat"><div class="sv">4</div><div class="sl">Disciplines tested for the Integration Hypothesis</div></div>
+  <div class="stat"><div class="sv">2</div><div class="sl">Parallel research tracks (computational + ethnographic)</div></div>
+  <div class="stat"><div class="sv">5</div><div class="sl">Years to synthesis volume</div></div>
+  <div class="stat"><div class="sv">₹3.1 Cr</div><div class="sl">Estimated programme budget (fieldwork-heavy)</div></div>
+</div>
+
+<div class="panel jade">
+  <h4>Additional Partnership Requirements (Beyond Module I §16)</h4>
+  <ul>
+    <li><strong>Kerala Kalamandalam / Kūṭiyāṭṭam practitioner institutions</strong> — ethnographic access and practitioner interview for performance-tradition tacit correction (Phase 1–2)</li>
+    <li><strong>Regional āsāri guild associations (Tamil Nadu)</strong> — architectural fieldwork access for Śilpaśāstra deviation surveys (§15 Category 5)</li>
+    <li><strong>Karnatak and Hindustani percussion gharānā lineages</strong> — direct ethnographic access for the mṛdaṅga case and comparable instrument-tuning tacit corrections (Phase 1–3)</li>
+    <li><strong>A complex-systems / network-science methodology partner</strong> (in addition to Module I's Azim Premji/Ashoka partnership) specifically for the negative-result reporting and falsifiability testing emphasized in §19 Lesson 5 and §21's falsifiability conditions</li>
+  </ul>
+</div>
+
+<div class="page-break" data-page="§21 ends"></div>
+
+<!-- §22 EXTENDED REFERENCES -->
+<div class="chapter-head" id="references2" style="margin:60px 0 32px">
+  <span class="ch-number">§22</span>
+  <h2>Extended References for Vectors III and IV</h2>
+  <span class="ch-dn">तृतीयचतुर्थवेक्टरयोः अतिरिक्तसन्दर्भाः</span>
+  <p class="ch-sub">Additional bibliography supporting the case study, contemporary relevance, and disputed-cases sections</p>
+</div>
+
+<div class="footnotes" style="margin-top:0;padding-top:0;border-top:none">
+  <h4>Tacit Knowledge — Extended Sources</h4>
+  <div class="fn"><span class="fn-num">[T4]</span>Sennett, Richard (2008). <em>The Craftsman</em>. New Haven: Yale University Press. Background for the embodied-skill framing of practice-based śāstric disciplines used throughout §18–§19.</div>
+  <div class="fn"><span class="fn-num">[T5]</span>Wenger, Etienne (1998). <em>Communities of Practice: Learning, Meaning, and Identity</em>. Cambridge: Cambridge University Press. Extends the gurukula-as-community-of-practice framing used in §14 and §19, Lesson 6.</div>
+  <h4 style="margin-top:16px">Network Science — Extended Sources</h4>
+  <div class="fn"><span class="fn-num">[G6]</span>Girvan, M. and Newman, M.E.J. (2002). "Community Structure in Social and Biological Networks." <em>Proceedings of the National Academy of Sciences</em> 99(12): 7821–26. Source for the community-detection methodology referenced as an alternative to Louvain in §10.</div>
+  <div class="fn"><span class="fn-num">[G7]</span>Granovetter, Mark (1973). "The Strength of Weak Ties." <em>American Journal of Sociology</em> 78(6): 1360–80. Background for interpreting structural holes and bridging scholars (§9 Prediction 3, §19 Lesson 3) as occupying a distinct structural role from densely-clustered insiders.</div>
+  <h4 style="margin-top:16px">Music and Performance Sources for the Mṛdaṅga Case (§18)</h4>
+  <div class="fn"><span class="fn-num">[S6]</span>Pesch, Ludwig (2009). <em>The Illustrated Companion to South Indian Classical Music</em>. 2nd ed. New Delhi: Oxford University Press. General reference for Karnatak percussion tuning practice consulted for the mṛdaṅga case study in §18.</div>
+  <div class="fn"><span class="fn-num">[S7]</span>Nelson, David P. (2008). <em>Solkattu Manual: An Introduction to the Rhythmic Language of South Indian Music</em>. Middletown: Wesleyan University Press. Background on the oral-pedagogical transmission channel for South Indian percussion technique, relevant to Tacit Mechanism 1 (§14) as instantiated in the mṛdaṅga case.</div>
+  <h4 style="margin-top:16px">Philosophy of Science — Falsifiability and Methodological Caution</h4>
+  <div class="fn"><span class="fn-num">[S8]</span>Popper, Karl (1959). <em>The Logic of Scientific Discovery</em>. London: Hutchinson. Foundational source for the falsifiability-condition methodology applied throughout §11, §20, and §21.</div>
+  <div class="fn"><span class="fn-num">[S9]</span>Ioannidis, John P.A. (2005). "Why Most Published Research Findings Are False." <em>PLoS Medicine</em> 2(8): e124. Background for the negative-result honesty principle proposed in §19, Lesson 5, as a contemporary research-integrity parallel.</div>
+</div>
+
+<div class="page-break" data-page="§22 ends"></div>
+
+<!-- ═══════════════════════════════════════════════════════
+     EXPANDED ABSTRACT (Module II)
+═══════════════════════════════════════════════════════ -->
+<div id="expanded-abstract2">
+
+<div class="abs-cover" id="abs2-cover" style="margin-top:60px">
+  <div class="abs-eyebrow">Expanded Abstract · Six Pages · Module II of V</div>
+  <div class="abs-dn-line">शास्त्रसम्बन्धस्य रूपचित्रणम् अव्यक्तज्ञानपारिस्थितिकी च — विस्तृतसारः</div>
+  <h2 class="abs-main-title">Formal Network Modelling and the Tacit Knowledge Ecology: An Extended Abstract</h2>
+  <p class="abs-tagline">A six-part discursive abstract tracing the argument of Vectors III and IV from their methodological origins through their central claims, their relationship to Vectors I and II, and their combined scholarly stakes — structured to be read independently of the main text by the specialist reader, and covering all four vectors of the framework developed across Modules I and II.</p>
+  <div class="abs-meta-row">
+    <span class="abs-tag">White Paper Series</span>
+    <span class="abs-tag">Seventh Angle</span>
+    <span class="abs-tag">Graph Theory</span>
+    <span class="abs-tag">Tacit Knowledge Ecology</span>
+    <span class="abs-tag">Śāstric Citation Network</span>
+    <span class="abs-tag">Bādhā Cascade Theory</span>
+    <span class="abs-tag">Silent Correction Theorem</span>
+    <span class="abs-tag">Falsifiability</span>
+  </div>
+</div>
+
+<!-- Abstract Page I -->
+<div class="abs-running-head" id="abs2-genesis">
+  <span>Expanded Abstract · Page I of VI</span>
+  <span>The Genesis of the Question</span>
+</div>
+
+<p class="dropcap">The question Vectors III and IV proceed from was implicit in Module I but could not be answered there. Module I established, through Vector I's cross-citation mapping proposal and Vector II's bādhā cascade theory, that the śāstric tradition's inter-disciplinary correction activity could in principle be identified and traced through the textual record. What Module I could not yet ask is what that record would look like once formally modelled — and what the record would necessarily miss. Both questions follow directly from taking Vectors I and II seriously as empirical, not merely interpretive, claims: if cross-citations are real data points, they have a formal structure that graph theory can characterize and test; and if the bādhā cascades are real historical events, they happened in a tradition whose knowledge production was never purely textual, which means a textually-derived model of the tradition's self-correction will be systematically incomplete unless something is done to account for what does not appear in texts at all.</p>
+
+<p>Vector III answers the first question: it takes Vector I's proposed citation graph and asks what graph-theoretic structure the knowledge ecology hypothesis predicts, generating six specific, falsifiable, and previously unstated predictions (§11) about the śāstric network's topology. Vector IV answers the second: it identifies, names, and evidences the tacit correction mechanisms — gurukula transmission, śāstrārtha audience judgment, performance feedback loops — that operated continuously alongside the textual correction system described in Modules I and II's earlier sections, but left only indirect traces requiring a different evidentiary methodology (§15) to recover.</p>
+
+<div class="abs-timeline">
+  <div class="abs-tl-item"><div class="abs-tl-date">Module I</div><p>Vector I: cross-citation as directed error signal. Vector II: bādhā as formal correction protocol. Both vectors visible in principle — traceable through texts.</p></div>
+  <div class="abs-tl-item"><div class="abs-tl-date">§9–§12</div><p>Vector III: the Vector I citation data formalized as a directed weighted graph; six graph-theoretic predictions generated and made falsifiable.</p></div>
+  <div class="abs-tl-item"><div class="abs-tl-date">§13–§16</div><p>Vector IV: three tacit correction mechanisms identified (gurukula, śāstrārtha, performance feedback); five evidence categories specified for indirect access.</p></div>
+  <div class="abs-tl-item"><div class="abs-tl-date">§17</div><p>Integration hypothesis: practice-based disciplines should show low formal-graph correction density precisely where tacit correction is doing the most work.</p></div>
+  <div class="abs-tl-item"><div class="abs-tl-date">§18</div><p>The mṛdaṅga case: a single discipline tested against both methodologies simultaneously, confirming the integration hypothesis in its most extreme form.</p></div>
+  <div class="abs-tl-item"><div class="abs-tl-date">§20–§21</div><p>Boundary conditions acknowledged; a combined computational-ethnographic research programme specified with shared falsifiability conditions.</p></div>
+</div>
+
+<p>The genesis of Vectors III and IV is therefore not independent of Vectors I and II — it is their direct methodological consequence. Module I asked whether the inter-śāstric correction network could be empirically characterized at all. Module II asks what tools are needed to characterize it completely: a formal model for what the texts show, and a complementary evidentiary method for what they do not.</p>
+
+<hr class="abs-rule">
+
+<!-- Abstract Page II -->
+<div class="abs-running-head" id="abs2-claim">
+  <span>Expanded Abstract · Page II of VI</span>
+  <span>The Central Claim and Its Novelty</span>
+</div>
+
+<div class="abs-proposition">
+  <p>The central claim of Module II is twofold and asymmetric. First, the inter-śāstric error-correction network proposed in Module I has specific, predictable, and falsifiable formal-graph properties — scale-free degree distribution, small-world clustering, identifiable structural holes occupied by named multi-disciplinary scholars — that can be derived from the knowledge ecology hypothesis before the citation data is even collected, and then tested against it. Second, the textual correction network that Vector III formalizes is necessarily incomplete: a substantial portion of the tradition's actual error-correction activity occurred tacitly, through institutional and embodied channels that the formal graph cannot register, and this tacit layer is not a residual curiosity but, in specific disciplines, the primary site of correction activity.</p>
+</div>
+
+<p>As in Module I, this claim decomposes into independently testable components, each carrying its own scholarly stakes:</p>
+
+<ul class="abs-claims">
+  <li><strong>The formal-falsifiability claim (Vector III):</strong> The knowledge ecology hypothesis is not merely a historical interpretation but a structural claim about network topology that generates specific, numerically testable predictions (§9, §11) — predictions that no prior treatment of the śāstric tradition has stated in graph-theoretic terms, and that could in principle be refuted by the citation data once collected.</li>
+  <li><strong>The tacit-completeness claim (Vector IV):</strong> No purely textual model of the śāstric knowledge ecology, however sophisticated, can be a complete model — because a measurable and in some disciplines dominant share of the tradition's correction activity left no textual trace by design, not by accident, and recovering it requires ethnographic and archaeological methods foreign to traditional philology.</li>
+  <li><strong>The integration claim (§17–§18):</strong> The two layers are not merely parallel but inversely related in a specific, testable way — formal correction density and tacit correction density should be negatively correlated across disciplines, with the mṛdaṅga case (§18) providing the framework's first concrete demonstration of this inverse relationship in a single, well-evidenced instance.</li>
+</ul>
+
+<div class="abs-pullquote">
+  "The graph that shows no correction activity is not showing an absence of correction. It is showing a correction that the textual medium was never going to be able to register — because the correction lives in the hands of the calibrating drummer, not in the citation behaviour of the commentator."
+  <cite>— Main Text, §18: The Mṛdaṅga Correction Network</cite>
+</div>
+
+<p>The novelty of this twofold claim should be stated precisely against the existing literature, as in Module I. Network-science approaches to intellectual history exist (citation analysis in the history of science is a mature field), but none has been applied to the śāstric citation corpus with the specific predictions Vector III generates. Tacit knowledge theory (Polanyi 1966; Collins 2010) is well developed in the philosophy of science and organizational studies, but has not previously been applied as a formal complement to a graph-theoretic model of a single historical knowledge tradition, nor tested for the specific inverse-correlation pattern the integration hypothesis proposes. Module II's contribution is the pairing itself — and the demonstration, via the mṛdaṅga case, that the pairing yields a testable empirical claim rather than two separately interesting but unconnected observations.</p>
+
+<hr class="abs-rule">
+
+<!-- Abstract Page III -->
+<div class="abs-running-head" id="abs2-ecology">
+  <span>Expanded Abstract · Page III of VI</span>
+  <span>The Concept Defined: Formal Graphs and Tacit Ecologies</span>
+</div>
+
+<p>Two technical concepts require precise definition before Vectors III and IV can be assessed on their merits, and both extend the knowledge-ecology vocabulary established in Module I §2 rather than replacing it.</p>
+
+<div class="abs-two-col">
+  <div>
+    <p>The <strong>formal directed error-signal graph</strong>, G = (V, E, w, d), defined precisely in Module I §6, treats every śāstric text as a node and every cross-disciplinary citation as a directed, weighted edge signed by agreement or disagreement. Vector III's contribution is not the graph's definition (that belongs to Vector I) but the claim that this graph, once populated with real citation data, will exhibit specific topological signatures — degree distributions, clustering coefficients, centrality profiles — that standard network science can test using exactly the tools developed for biological, social, and technological networks. The knowledge ecology hypothesis is thereby translated from a historical interpretation into a structural claim with numerical content.</p>
+    <p>The <strong>tacit knowledge ecology</strong>, introduced in §13, extends Polanyi's "we know more than we can tell" into a specifically inter-disciplinary and historical register. It is not simply the observation that individual practitioners hold tacit skill — that observation is well established in the tacit-knowledge literature generally — but the more specific claim that the śāstric tradition built <em>institutional structures</em> (gurukula, śāstrārtha, performance tradition) whose function was specifically to correct errors in this tacit, untextualizable dimension, and that these structures operated in parallel with, not merely beneath, the textual correction system.</p>
+  </div>
+  <div>
+    <div class="abs-six-grid" style="grid-template-columns:1fr 1fr;gap:10px">
+      <div class="abs-six-cell">
+        <div class="asix-num">III</div>
+        <div class="asix-label">Vector III in One Line</div>
+        <p>The citation graph has a predictable shape, and the shape is itself evidence for or against the knowledge ecology hypothesis.</p>
+      </div>
+      <div class="abs-six-cell">
+        <div class="asix-num">IV</div>
+        <div class="asix-label">Vector IV in One Line</div>
+        <p>Some of the most important correction activity in the tradition never touched a text, and a different method is needed to find it.</p>
+      </div>
+      <div class="abs-six-cell">
+        <div class="asix-num">III∩IV</div>
+        <div class="asix-label">Integration in One Line</div>
+        <p>Where the graph goes quiet, the tacit layer is often loudest — and the mṛdaṅga case shows exactly how to test this.</p>
+      </div>
+      <div class="abs-six-cell">
+        <div class="asix-num">§18</div>
+        <div class="asix-label">The Test Case</div>
+        <p>A single drum, tuned by hand for six centuries against a text no one ever formally corrected — until ethnography looked.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p>It is worth being explicit that the formal graph and the tacit ecology are not in competition as explanations of the śāstric tradition's stability. They are complementary instruments aimed at two different evidentiary registers of the same underlying phenomenon — the network of cross-disciplinary correction relationships first proposed in Module I §2 as the defining structural feature of a knowledge ecology. Vector III makes that network's textual layer numerically precise; Vector IV makes its non-textual layer empirically accessible.</p>
+
+<hr class="abs-rule">
+
+<!-- Abstract Page IV -->
+<div class="abs-running-head" id="abs2-relation">
+  <span>Expanded Abstract · Page IV of VI</span>
+  <span>Relation to Vectors I and II</span>
+</div>
+
+<p>The relationship between Vectors III–IV and Vectors I–II requires precise formulation, exactly as Module I's §4 required precise formulation of the relationship between the seventh angle and the six existing angles. Vectors III and IV are not independent additions to the framework; they are the formal and evidentiary completion of what Vectors I and II could only gesture toward.</p>
+
+<div class="abs-six-grid">
+  <div class="abs-six-cell"><div class="asix-label">Vector I — Cross-Citation</div><p>Proposes that citations are data points and specifies a methodology for extracting them from the corpus. Produces raw graph data.</p></div>
+  <div class="abs-six-cell"><div class="asix-label">Vector III — Formal Graph</div><p>Takes Vector I's raw graph data and asks what structure the knowledge ecology hypothesis predicts it should have. Produces testable numerical predictions.</p></div>
+  <div class="abs-six-cell"><div class="asix-label">Vector II — Bādhā Cascade</div><p>Proposes that corrections propagate through the network in identifiable patterns (upward, downward, lateral) and documents four historical cases.</p></div>
+  <div class="abs-six-cell"><div class="asix-label">Vector IV — Tacit Ecology</div><p>Identifies a parallel propagation channel — embodied, institutional, untextualized — that the bādhā cascades described in Vector II would have used alongside, or instead of, textual citation.</p></div>
+  <div class="abs-six-cell"><div class="asix-label">I + III Together</div><p>A complete formal account of what the textual correction record looks like and why it should look that way if the knowledge ecology hypothesis is correct.</p></div>
+  <div class="abs-six-cell"><div class="asix-label">II + IV Together</div><p>A complete account of how corrections actually propagated — through both the formally documented bādhā cascades and the tacit channels that left no cascade-style textual trace at all.</p></div>
+</div>
+
+<div class="abs-proposition">
+  <p>Module I asked: can the inter-śāstric correction network be found in the textual record, and how did corrections propagate once found? Module II asks: what shape should that network have if the hypothesis is right, and what is missing from the network no matter how completely the textual record is searched? The four vectors together — I, II, III, IV — constitute a single research design in which each vector answers a question the preceding vector's answer necessarily raised.</p>
+</div>
+
+<p>This relationship also clarifies what would constitute evidence against the seventh-angle framework as a whole, rather than against any single vector. If Vector III's graph predictions are confirmed but Vector IV's tacit-correction claims cannot be evidenced in any domain, the framework would need to be narrowed to a purely textual model of the knowledge ecology — a more modest but still significant claim. If Vector IV's tacit mechanisms are well evidenced but Vector III's graph predictions are not confirmed (a uniform or random citation structure, contrary to §9's predictions), the framework would need to abandon its claim that the textual correction network has a structured, non-random topology, while retaining the broader ecological framing. The four-vector design is constructed so that each possible combination of confirmation and disconfirmation yields an informative, rather than merely inconclusive, result.</p>
+
+<hr class="abs-rule">
+
+<!-- Abstract Page V -->
+<div class="abs-running-head" id="abs2-vectors">
+  <span>Expanded Abstract · Page V of VI</span>
+  <span>Four-Vector Summary — Vectors I Through IV</span>
+</div>
+
+<p>Following the format of Module I's Page V, this page summarizes all four vectors developed across the two modules to date, giving the specialist reader a complete orientation to the framework's empirical programme without requiring the full main text of either module.</p>
+
+<div class="abs-vector-row">
+  <div class="avr-num">I</div>
+  <div class="avr-body">
+    <h5>Cross-Citation Error Signals — The Śāstric Citation Network (Module I, §5–§6)</h5>
+    <p>Every disagreeing citation of one śāstra by another is a directed error signal. Systematically mapping all such signals across the GRETIL corpus would produce the first formal network map of inter-śāstric error-detection activity, hypothesized to show a structured core-periphery topology with Nyāya, Mīmāṃsā, and Vyākaraṇa as primary error-detectors.</p>
+  </div>
+</div>
+<div class="abs-vector-row">
+  <div class="avr-num">II</div>
+  <div class="avr-body">
+    <h5>The Bādhā Cascade Theory — Formal Correction Propagation (Module I, §7–§8, §13)</h5>
+    <p>Sublation (<span class="skt-inline">बाधा</span>) operates at the inter-śāstric level as a cascade: a correction in one discipline propagates through the network in upward, downward, or lateral form. Four historical cases are documented in Module I (Nāgārjuna, Dignāga, Āryabhaṭa, Abhinavagupta) and a fifth, most complete case — the Navya-Nyāya upgrade's 250-year propagation through five disciplines — is documented as an extended case study.</p>
+  </div>
+</div>
+<div class="abs-vector-row">
+  <div class="avr-num">III</div>
+  <div class="avr-body">
+    <h5>Śāstric Relations as a Formal Directed Graph (Module II, §9–§12)</h5>
+    <p>The Vector I citation graph, once populated, is predicted to exhibit a scale-free degree distribution, the small-world property, and structural holes occupied by identifiable multi-disciplinary bridging scholars. Six further novel predictions — including the Dharmakīrti Bottleneck and the Buddhist Severance Point — generate specific, falsifiable numerical claims about network topology across five historical periods (§12).</p>
+  </div>
+</div>
+<div class="abs-vector-row">
+  <div class="avr-num">IV</div>
+  <div class="avr-body">
+    <h5>The Tacit Knowledge Ecology (Module II, §13–§18)</h5>
+    <p>A substantial portion of the tradition's error-correction activity operated tacitly — through gurukula transmission, śāstrārtha audience judgment, and performance-tradition feedback loops — leaving only indirect textual traces recoverable through five categories of evidence. The mṛdaṅga correction (§18) provides the framework's most complete single-case demonstration, confirming the predicted inverse relationship between formal-graph correction density and tacit-correction density in its most extreme form: zero textual correction activity alongside universal, continuous tacit correction.</p>
+  </div>
+</div>
+
+<hr class="abs-rule">
+
+<!-- Abstract Page VI -->
+<div class="abs-running-head" id="abs2-stakes">
+  <span>Expanded Abstract · Page VI of VI</span>
+  <span>Scholarly Stakes — What Vectors III and IV Together Establish</span>
+</div>
+
+<p>The scholarly stakes of Vectors III and IV, considered jointly, extend Module I's stakes (§16 of that module) into two further fields — computational humanities and the ethnography of craft and performance traditions — while sharpening the original Indological and epistemological stakes with falsifiable, numerically specific content.</p>
+
+<div class="abs-impact-row">
+  <div class="abs-impact-item">
+    <div class="aii-head">For Computational Humanities</div>
+    <p>The Śāstric Citation Network, once subjected to the centrality, clustering, and community-detection methods specified in §10, would constitute one of the largest pre-modern non-Western citation networks ever formally analyzed — a substantial methodological contribution independent of whether any specific prediction in §11 is confirmed.</p>
+  </div>
+  <div class="abs-impact-item">
+    <div class="aii-head">For Ethnomusicology and Performance Studies</div>
+    <p>The mṛdaṅga case (§18) models a general method for testing textual prescription against living practice that could be extended to any performance tradition with a textual canon and a surviving practice lineage — a method ethnomusicology has used informally but rarely framed as a test of a tradition's formal versus tacit correction architecture.</p>
+  </div>
+  <div class="abs-impact-item">
+    <div class="aii-head">For Knowledge Management and Organizational Theory</div>
+    <p>The six contemporary lessons of §19 — particularly the distinction between textual-correction and tacit-correction audit instruments — address a documented gap in how organizations measure quality in embodied-knowledge domains (clinical practice, craft engineering, skilled trades) where citation-style metrics are structurally inapplicable.</p>
+  </div>
+  <div class="abs-impact-item">
+    <div class="aii-head">For the Philosophy of Falsifiable Historical Claims</div>
+    <p>The explicit falsifiability conditions specified for every hypothesis in §9, §11, §17, §18, and §21 model a standard of historical-interpretive rigor — naming in advance what evidence would count against one's own thesis — that is comparatively rare in humanities scholarship and that this white paper series treats as a non-negotiable commitment, demonstrated concretely in the disputed cases of §20.</p>
+  </div>
+</div>
+
+<p>Considered together with Module I, the four vectors developed so far establish a programme whose ambition exceeds the sum of its individual claims. A historian who accepted Vector I and II alone would have a richly documented but ultimately interpretive account of inter-śāstric correction — persuasive, but resting on the historian's judgment about how to read the textual evidence. The addition of Vector III commits that account to numerically specific, independently testable predictions about network topology. The addition of Vector IV commits the same account to acknowledging, and then methodically pursuing, exactly what the textual record by itself cannot show. Together, the four vectors transform the seventh-angle framework from an interpretive proposal into a research design with explicit success and failure conditions — the central methodological achievement this white paper series claims for the Module I–II combination, and the foundation on which Modules III, IV, and V build the remaining two vectors (V and VI) and the synthesis programme of the series as a whole.</p>
+
+<div class="abs-pullquote">
+  "A complete theory of the śāstric knowledge ecology needs both maps: the explicit network shows the tradition's intellectual immune system; the tacit network shows its physiological immune system."
+  <cite>— Main Text, §17: Integrating Vectors III and IV</cite>
+</div>
+
+<div class="keywords-panel">
+  <h4>Keywords and Indexing Terms</h4>
+  <p>Śāstric Citation Network (ŚCN) · directed error-signal graph · scale-free network · small-world property · structural holes · betweenness centrality · PageRank · community detection · Dharmakīrti Bottleneck · Buddhist Severance Point · tacit knowledge ecology · gurukula transmission · śāstrārtha tacit judgment · performance feedback loop · mṛdaṅga correction · Silent Correction Theorem · Integration Hypothesis · bādhā cascade theory · falsifiability conditions · computational humanities · ethnomusicology · craft knowledge audit · negative-result honesty · Sanskrit NLP · GRETIL corpus</p>
+</div>
+
+</div><!-- end #expanded-abstract2 -->
+
+<!-- ═══════════════════════════════════════════════════════
+     REFERENCES (original)
+═══════════════════════════════════════════════════════ -->
 <div class="chapter-head" id="references">
   <span class="ch-number">REF</span>
   <h2>References &amp; Bibliography</h2>
@@ -453,7 +1061,7 @@ table.data td.hi{color:var(--saffron);font-family:"Cinzel";font-size:12px}
   <div class="fn"><span class="fn-num">[T3]</span>Lave, J. and Wenger, E. (1991). <em>Situated Learning: Legitimate Peripheral Participation</em>. Cambridge: Cambridge University Press. The "communities of practice" framework applied to understanding how gurukula tacit error correction functioned (§14).</div>
   <h4 style="margin-top:16px">Sanskrit and Śāstric Sources</h4>
   <div class="fn"><span class="fn-num">[S1]</span>Dharmakīrti. <em>Pramāṇavārttika</em>. Trans. R.C. Pandeya. Delhi: Motilal Banarsidass, 1989. Primary source for the Dharmakīrti bottleneck prediction in §11.</div>
-  <div class="fn"><span class="fn-num">[S2]</span>Śārṅgadeva. <em>Saṃgītaratnākara</em>. Trans. R.K. Shringy and P.L. Sharma. New Delhi: Munshiram Manoharlal, 1978. Source for the mṛdaṅga correction research pointer in §14.</div>
+  <div class="fn"><span class="fn-num">[S2]</span>Śārṅgadeva. <em>Saṃgītaratnākara</em>. Trans. R.K. Shringy and P.L. Sharma. New Delhi: Munshiram Manoharlal, 1978. Source for the mṛdaṅga correction research pointer in §14 and the extended case study in §18.</div>
   <div class="fn"><span class="fn-num">[S3]</span>Kavi, M.R. ed. (1926–64). <em>Nāṭyaśāstra with Abhinavabhāratī</em>. 4 vols. Baroda: GOS. Source for the karaṇa disagreement evidence in §15 (Category 2).</div>
   <div class="fn"><span class="fn-num">[S4]</span>Gaṅgeśa. <em>Tattvacintāmaṇi</em>. Ed. Kamakhyanath Tarkavagisha. Calcutta, 1884–1901. Primary source for the Navya-Nyāya bridge prediction in §11.</div>
   <div class="fn"><span class="fn-num">[S5]</span>Ganeri, J. (2019). "The Self: Naturalism, Consciousness, and the First-Person Stance." <em>Oxford Handbook of Indian Philosophy</em>. Provides context for understanding Dharmakīrti's correction cascade and its propagation into Navya-Nyāya.</div>
@@ -475,7 +1083,17 @@ function onScroll(){
   links.forEach(l=>{const h=l.getAttribute('href').replace('#','');l.classList.toggle('active',h===cur)});
 }
 window.addEventListener('scroll',onScroll,{passive:true});
-links.forEach(l=>{if(l.getAttribute('href').startsWith('#')){l.addEventListener('click',e=>{e.preventDefault();document.getElementById(l.getAttribute('href').replace('#','')).scrollIntoView({behavior:'smooth'})})}});
+links.forEach(l=>{if(l.getAttribute('href').startsWith('#')){l.addEventListener('click',e=>{e.preventDefault();document.getElementById(l.getAttribute('href').replace('#',''))?.scrollIntoView({behavior:'smooth'})})}});
+
+document.querySelectorAll('.da-trigger').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var body = btn.nextElementSibling;
+    var arrow = btn.querySelector('.da-arrow');
+    var open = body.classList.contains('open');
+    body.classList.toggle('open', !open);
+    if (arrow) arrow.classList.toggle('open', !open);
+  });
+});
 </script>
 </body>
 </html>
